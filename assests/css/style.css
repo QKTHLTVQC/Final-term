@@ -1,0 +1,120 @@
+.category {
+        display: inline-block;
+        margin-top: 30px;
+}
+.selected {
+        margin-top: 10px;
+        margin-left: 80px;
+}
+.name_input {
+        margin-top: 10px;
+}
+#top-link {
+        display: none;
+        position: fixed;
+        right: 5px;
+        bottom: 5px;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        padding: 3px;
+}
+
+#hotnews-zone {
+        border: solid 1px #D3D6C1;
+        margin: 7px 0;
+        padding: 12px;
+        background: #ffffd1;
+        padding-right: 0;
+        color: #555;
+        font-size: 12px;
+        font-family: Tahoma;
+        position: relative;
+        padding-right: 80px;
+}
+
+.txtBlue {
+        color: #2D6CA2 !important;
+}
+
+.info-sunshine {
+        font-size: 12px;
+        font-family: Tahoma;
+        margin-top: 15px;  
+        color: #2D6CA2 !important;  
+}
+
+.logo-sunshine {
+        position: absolute;
+        left: 0px;
+        top: 5px;
+        width: 50px;
+        margin-top: 5px;
+        margin-left: 60px;  
+}
+
+#hotline {
+        position: absolute;
+        left: 0px;
+        top: 5px;
+        width: 480px;
+        height: 83px;
+        margin-top: 0px;
+        margin-left: 0px;
+}
+
+#num-vip-auctions {
+        margin-left: 10px;
+        margin-top: 5px;
+        color: #555;
+}
+
+#num-vip-auctions span {
+        font-weight: bold;
+}
+
+#search-area {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        margin-top: 30px;
+        margin-right: 10px;
+        padding: 3px;
+        z-index: 999;
+}
+
+#search-area #txtKeyword {
+        font-size: 14px;
+        padding: 2px;
+        width: 200px;
+        color: #777;
+}
+
+#search-area #btnSearch {
+        padding: 3px;
+        width: 70px;
+        border: solid 1px #2D6CA2;
+        background-color: #2D6CA2;
+        color: #ffffff;
+        cursor: pointer;
+}
+
+#m-logo {
+        font-size: 15px;
+}
+
+#m-logo a {
+        text-decoration: none;
+}
+
+#logo a img {
+        margin-top: 100px;
+}
+
+#footer .frow {
+        margin: 3px 0px;
+}
+
+#footer .frow a {
+        font-size: 12px;
+}
+

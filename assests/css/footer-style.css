@@ -1,0 +1,89 @@
+a.lnk-5giay,
+a.lnk-5giay:link,
+a.lnk-5giay:visited {
+        background: url('../images/5giay-logo-off.png') no-repeat 0px 0px;
+        width: 100px;
+        height: 25px;
+        display: block;
+        text-indent: -9999px;
+        margin-top: 6px;
+}
+
+a.lnk-5giay:hover {
+        background: url('../images/5giay-logo-on.png') no-repeat 0px 0px;
+}
+
+a.lnk-five,
+a.lnk-five:link,
+a.lnk-five:visited {
+        background: url('../images/five-logo-off.png') no-repeat 0px 0px;
+        width: 100px;
+        height: 17px;
+        display: block;
+        text-indent: -9999px;
+        margin-top: 9px;
+}
+
+a.lnk-five:hover {
+        background: url('../images/five-logo-on.png') no-repeat 0px 0px;
+}
+
+a.lnk-giamua,
+a.lnk-giamua:link,
+a.lnk-giamua:visited {
+        background: url('../images/giamua-logo-off.png') no-repeat 0px 0px;
+        width: 100px;
+        height: 22px;
+        display: block;
+        text-indent: -9999px;
+        margin-top: 9px;
+}
+
+a.lnk-giamua:hover {
+        background: url('../images/giamua-logo-on.png') no-repeat 0px 0px;
+}
+
+#footer-expand-zone {
+        height: 41px;
+        background-color: #2F70A8;
+        padding-top: 1px;
+        cursor: pointer;
+}
+
+#fez-line {
+        height: 2px;
+        background-color: #666;
+}
+
+#fez-expand-icon {
+        width: 31px;
+        height: 31px;
+        margin: 5px auto;
+        background-image: url('../images/v2/downarrow.png');
+        background-position: 0px 0px;
+}
+
+#fez-powered-by {
+        margin: 0 auto;
+        color:white;
+        width: 177px;
+        height: 27px;
+        position: absolute;
+        right: 0;
+        top: 0px;
+        margin-top: 0px;
+        background-position: 0px 0px;
+}
+
+#fez-version {
+        width: 200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        line-height: 27px;
+        color: #999;
+}
+
+#layout-footer {
+        height: auto;
+}

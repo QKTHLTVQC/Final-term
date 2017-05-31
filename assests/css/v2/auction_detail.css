@@ -1,0 +1,1081 @@
+body {
+    margin:0px; 
+    padding:0px;
+    font-family:"lucida grande",tahoma,verdana,arial,sans-serif; 
+    font-size:13px; 
+    line-height:18px;
+}
+
+.clear {clear:both;}
+a {color:#d2092d;text-decoration:none;}
+a:hover {text-decoration:underline;}
+
+#layout {
+
+}
+
+#layout-header {
+
+}
+
+#layout-content {
+
+}
+
+#layout-footer {
+
+}
+
+#header {
+    margin:0px auto;
+    height:60px;
+    width:980px;
+    position:relative;
+    background-color:#FFF;
+    margin-top:12px;
+}
+
+    #logo {
+        position:absolute;
+        left:0px;
+        top:0px;
+        width:160px;
+        height:30px;
+        margin-top:5px;
+        margin-left:12px;
+    }
+    
+    #user-menu-zone {
+        position:absolute;
+        right:0px;
+        top:0px;
+        margin-top:6px;
+        margin-right:3px;
+    }
+
+        #user-links {
+            list-style-type:none;
+            padding:0px;
+            margin:0px;
+        }
+        
+        #user-links  li {
+            display:inline;
+            margin:0px 10px;
+        }
+        
+        #user-links  li.sep {
+            margin:0px 0px;
+            width:2px;
+            border-right:solid 1px #ccc;
+            font-size:10px;
+        }
+    
+    #navbar {
+        margin:0 auto;
+         height:38px;
+        line-height:38px;
+        width:980px;        
+        background:transparent url('../../../assests/images/background-menu-bar.png') repeat-x 0 0;
+    }
+        #main-menu {
+            margin:0px;
+            padding:0px;
+            height:25px;
+            line-height:25px;
+            list-style-type:none;
+        }
+        
+        #main-menu li {
+            display:inline;
+        }
+
+#footer {
+    width: 980px;
+    margin: 0px auto;
+    text-align: center;
+    border: solid 1px #DDD;
+    margin-bottom: 15px;
+    background-color: #F2F2F2;
+    margin-top: 10px;
+    padding: 10px 0px;
+}
+
+#container {
+    width:980px;
+    margin:0px auto;
+}
+
+#breadcrumb {
+    height:28px;
+    line-height:28px;
+    padding-left:12px;
+    color:#494949;
+    border-bottom:solid 1px #ccc;
+    background-color:#f6f6f6;
+}
+
+#navbar-link-home {
+    display:block;
+    width:50px;
+    height:35px;
+    text-indent:-1000px;
+    float:left;
+}
+
+#navbar-links {
+    margin:0px;
+    padding:0px;
+    list-style-type:none;
+    float:left;
+}
+
+#navbar-links li {float:left;}
+
+#navbar-links li a {color:#fff;text-decoration:none;font-weight:bold;}
+#navbar-links li a:hover {text-decoration:underline;}
+
+#navbar-links .navbar-sep {
+    width:6px;
+    margin:0px 5px;
+    background:transparent url('../../../assests/images/nav-sep.jpg') no-repeat 0px 8px;
+}
+
+#auction-detail {
+}
+
+#auction-detail-inner {margin:0px;background-color:#fff;padding:12px;padding-bottom:0px;}
+
+#auction-images-zone 
+{
+    float:left;
+}
+
+.auction-images {
+    border:solid 1px #ccc;    
+    padding:5px;
+    width:250px;
+    float:left;
+}
+
+.auction-images img {
+    width:250px;
+    height:250px;
+}
+
+.auction-item {
+    float:right;
+    width:680px;
+    margin-bottom:0px;
+}
+
+.auction-item .title {
+    height:20px;
+    line-height:20px;
+    margin-bottom:12px;
+    font-size:22px;
+    padding-bottom:6px;
+    border-bottom:dotted 1px #ccc;
+}
+
+#auction-detail-inner .title {
+    height:20px;
+    line-height:20px;
+    margin-bottom:12px;
+    font-size:22px;
+    padding-bottom:6px;
+    border-bottom:dotted 1px #ccc;
+    color:#494949;
+}
+
+.auction-item .title a, .auction-item .title a:link, .auction-item .title a:visited {
+    text-decoration:none;
+    font-size:22px;
+    color:#000;    
+}
+
+.auction-item .title a:hover {
+    text-decoration:underline;
+}
+
+.auction-item .picture img {
+    width:180px;
+    margin:0px auto;
+    margin-left:0px;
+    margin-bottom:12px;
+}
+
+.server-time {
+    margin-bottom:12px;
+}
+
+.price {
+    text-align:center;
+}
+
+#lbl-msg {
+    padding:5px 10px;
+    margin:10px;
+    border:solid 1px #ccc;
+}
+
+.tbl-bids {
+    width:400px;
+}
+
+.tbl-bids td {text-align:center;}
+.tbl-head {background-color:#888;color:#fff}
+.row1 {background-color:#F1F1F1;}
+.row2 {background-color:#F6F6F6;}
+
+#msgBox{background-color:#D2092D;color:#FFF;display:none;padding:10px;position:absolute;}
+#msgBox a {color:White; font-weight:bold;}
+
+.last-bid-price {font-size:18px;margin:3px 0px;color:#cccc00}
+.last-bid-user {color:#0000CC;margin:3px 0px;}
+.original-price {color:#888;text-decoration:line-through;font-size:16px;}
+
+
+.original-price-rows {text-align:left;margin-bottom:3px;color:#bbb}
+.saved-percent-rows {color:#4a4a4a;margin-bottom:12px;text-align:left;}
+.server-time-rows {text-align:left;font-weight:bold;margin-bottom:12px;font-size:15px;}
+.server-time-rows .glasshour {background:transparent url('../../../assests/images/sand-clock.png') no-repeat 0px 5px;
+    padding-left:20px;height:30px;line-height:30px;
+}
+.server-time-rows table {height:30px;}
+
+.last-bid-price {font-size:18px;margin:3px 0px 0px 0px;color:#EB0328;text-align:left;}
+.last-bid-user {color:#E65709;margin:3px 0px;text-align:left;}
+.submit-btn {text-align:left;margin:6px 0px 12px 0px;}
+input.price {border:solid 1px #888;margin-bottom:6px;font-size:15px;color:#000;width:120px;float:left;margin-right:3px;}
+input.price2 {border:solid 1px #888;margin-bottom:6px;font-size:15px;color:#000;width:120px;float:left;margin-right:3px;text-align:center}
+
+.content-caption {margin:10px 0px;border-bottom:solid 1px #ccc;padding-bottom:3px;}
+
+#auction-content {background-color: white;padding:12px;padding-top:0px;}
+
+#tab-headers-bg {
+    background: url('../../../assests/images/tabs_bg.gif') repeat-x 0px 1px;
+    padding-bottom:1px;
+}
+#tab-headers {
+    list-style-type:none;margin:0px; padding:0px;
+}
+.tab-header {
+    float:left;
+    cursor:pointer;
+    margin-right:3px;
+    background: url('../../../assests/images/tab_left.png') no-repeat 0px 0px;
+    height:26px;
+    padding-left:10px;
+}
+.tab-header a {
+    background: url('../../../assests/images/tab_right.png') no-repeat right top;
+    font-weight:bold;   
+    padding: 4px 12px 9px 3px;
+    height: 16px;
+    display: block;
+}
+.tab-header a:hover {text-decoration:none;}
+
+.tab-header-active {
+    background: url('../../../assests/images/tab_left_active.gif') no-repeat left top;
+}
+.tab-header-active a {
+     background: url('../../../assests/images/tab_right_active.gif') no-repeat right top;
+     color:#fff;
+}
+
+#tab-contents {margin-top:0px;}
+.tab-content {display:none;}
+.tab-content-active {display:block}
+
+.div-image {text-align:center; margin-bottom:12px; width:210px;padding:6px;border:solid 1px #ccc;float:left;margin-right:12px;}
+.div-image img {max-width:208px;}
+.dive-image-inner {width:208px; height:150px;overflow:hidden;}
+
+#content-images a:hover { 
+    color: #fff; 
+}
+
+
+
+.comment-delete {
+    cursor: pointer;
+    /*background: url('../images/delete-icon.png') no-repeat;*/
+}
+
+.comment-reply {
+    cursor: pointer;
+    /*background: url('../images/answer-icon.png') no-repeat;*/
+}
+
+.reply-box {display:none;}
+
+.comment-item {
+   padding-left:25px;
+   background: url('../images/user-icon.png') no-repeat 5px 6px;
+   padding-bottom:6px;
+   margin-top:6px;
+   background-color:#ECEFF5;
+   padding-top:6px;
+}
+
+.comment-item .comment-date, .child-comment-item .comment-date {
+    color: #FF6E05;
+    font-family: Tahoma;
+}
+
+.comment-item .author {
+    color: #444;
+    font-weight: bold;
+}
+
+.child-comments {
+    padding-top:3px;
+    margin-right:20px;
+    
+}
+
+.child-comment-item {
+    background: url('../images/user2-icon.png') no-repeat 5px 6px;
+    padding-left:25px;
+    border-top:dotted 1px #ccc;
+    padding-top:6px;
+    margin-top:6px;
+}
+
+.child-comment-item .author {
+    color: #444;
+    font-weight: bold;
+}
+
+textarea {resize:none;width:99%;margin-right:12px;display:block;border:solid 1px #AAA;}
+
+.comment-actions {font-size:12px;}
+
+#content-comments {background-color:#fff;}
+
+.reply-box textarea {margin-left:25px;width:900px;padding:2px;}
+
+#content-description, #content-short-desc, #content-images, #content-videos, #content-warranty {
+    background-color:#F6F6F6;
+    padding:12px;
+    margin-top:5px;
+}
+
+#comment-box {margin-top:6px;}
+#txt-comment {
+    height:60px;
+    overflow:auto;
+    width:99%;
+    resize:none;
+    outline:none;
+    border:solid 1px #ccc;
+    padding:1px 3px;
+    font-size: 13px;
+    font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+    line-height: 18px;
+    color: #333;
+    margin-bottom:3px;
+}
+
+.txt-reply {height:18px;margin:3px 0px;}
+
+* {outline-style:none;}
+
+#comment-list-pagination {margin:10px 0px; text-align:right;}
+
+#comment-box ul {margin:0px;padding:0;list-style-type:none;}
+
+.markItUpHeader {display:block;height:20px;}
+
+#comment-box {margin-top:12px;background-color:#F6F6F6;padding:6px 3px;}
+
+.bbCodeImg {margin:5px 0px;}
+
+#content-images {
+}
+
+.div-image-3 {
+    margin-right:0px;
+    float:right;
+}
+
+#iframe_like {margin:6px 0px;}
+#bids-list {float:right;}
+
+#auction-stats {
+    text-align:right;
+    height:30px;
+    line-height:30px;
+}
+
+.auction-images {
+    position:relative;
+}
+
+.status-end {
+    position:absolute; top:0px;left:0px;
+    z-index:0;
+    background:transparent url('../../../assests/images/end-label.png') no-repeat 0 0;
+    width:45px;
+    height:45px;
+    margin-top:-2px;
+    margin-left:-3px;
+}
+
+.title {
+    position:relative;
+}
+
+.start-time {
+    font-weight:normal;
+    position:absolute;
+    top:0px;
+    right:0px;
+    font-size:13px;
+}
+
+.start-time-rows {
+    margin-bottom:3px;
+    color:#666;
+}
+
+.start-time-rows span
+{
+    color:#333;
+}
+
+#submenus {
+    height: 25px;
+    font-family: Verdana;
+    font-size: 12px;
+    color: #333;
+    clear: both;
+    margin-top: 1px;
+    overflow:hidden;
+    background-color: #F6F6F6;
+    color:#D2092D;
+}
+
+#submenus ul {
+    list-style-type: none;
+    height: 23px;
+    border-bottom: solid 1px #CCC;
+    margin: 0px;
+    padding: 0px;
+    padding-left: 8px;
+    background-color: #f6f6f6;
+    margin-top:4px;
+}
+
+#submenus ul li {
+    display: inline-block;
+    padding: 0px 10px 0px 10px;
+    margin:0px;
+    height:14px;
+    line-height:14px;
+}
+
+#submenus ul li.sep {
+    border-right: 1px solid #CCC;
+    padding: 0px 1px;
+    width: 1px;
+}
+
+#submenus ul li.here {
+    font-weight:bold;
+}
+
+#navbar-links {margin-left:14px;}
+#navbar-links li {float:left;padding:0px 12px;}
+#navbar-links li.selected { 
+    background:transparent url('../../../assests/images/selected-menu.png') repeat-x 0px 0px;
+}
+
+#pane-main {
+    background-color:#fff;
+    margin-top:1px;
+}
+
+#pane-left {
+    float:left;
+    width:699px;
+}
+
+#pane-right {
+    float:right;
+    width:279px;
+}
+
+.box-right {
+   width:256px;
+   margin-left:9px;
+   background-color:#fff;
+   border:solid 1px #bbcddb;
+   color:#6e6e6e;
+   padding-bottom:9px;
+}
+
+.box-caption {
+    color:#666;
+    height:20px;
+    line-height:14px;
+    padding:6px 12px;
+    background:transparent url('../../../assests/images/menu-header-bg.gif') repeat-x 0 0;
+}
+
+#categories-box {
+
+}
+
+#categories-box ul {
+    margin:0px;
+    padding:0px;
+    list-style-type:none;
+}
+
+#categories-box ul li {
+    height:22px;
+    line-height:22px;
+    margin-left:12px;
+    background:transparent url('../../../assests/images/menu-icon.gif') no-repeat 0px 7px;
+    padding-left:17px;
+}
+
+#categories-box ul li a.selected {
+    font-weight:bold;
+}
+
+#recent-comments {
+    margin-top:9px;
+}
+
+#support-box {
+    margin-top:9px;
+}
+
+#support-box td {
+    height:22px;
+    line-height:22px;
+    padding:6px 0px;
+}
+
+#bid-auto-area {
+    margin:10px 0px;
+}
+
+#autobid-area 
+{
+    height:25px;
+    line-height:25px;    
+}
+
+#msgBox2
+{
+    background-color:#D20920;
+    color:#FFF;
+    padding:10px;
+    position:fixed;
+    top: 220px;
+    left: 50%;
+    margin-left: -150px;
+    width: 300px;    
+    z-index:101;
+    
+}
+#msgBox2 a {color:White; font-weight:bold;}
+
+
+/*---------*/
+
+#navbar-links {
+    margin-left:0px;
+}
+
+
+body {
+    background-color:#eff0eb;
+}
+
+#layout-header {
+    background-color:#fdfdfb;
+    height:83px;
+    background:transparent url('../../../assests/images/v2/top-bg.jpg') repeat-x 0 0;
+}
+
+#layout-footer {
+    background:#f5f6f1 url('../../../assests/images/v2/footer-bg.jpg') repeat-x 0 0;
+    height:150px;
+}
+
+#header {
+    height:83px;
+    margin-top:0px;
+    background-color:transparent;
+}
+
+#logo {
+        position:absolute;
+        left:0px;
+        top:0px;
+        width:240px;
+        height:83px;
+        margin-top:0px;
+        margin-left:0px;
+    }
+    
+    #hotline-zone {
+        position:absolute;
+        right:0px;
+        top:0px;
+        width:155px;
+        font-weight:bold;
+        color:#555;
+        margin-top:45px;
+        height:30px;
+        line-height:30px;
+        font-size:15px;
+    }
+    
+    #hotline-zone img {
+        float:left;
+        margin-right:3px;
+        border:none;
+    }
+
+#navbar {
+    margin:0 auto;
+    height:25px;
+    line-height:25px;
+    width:980px;       
+    background-image:none; 
+}
+
+#footer {
+    width: 980px;
+    margin: 0px auto;
+    text-align: center;
+    margin-bottom: 15px;
+    padding: 10px 0px;
+    border:none;
+    background-color:transparent;
+}
+
+#layout-menu {
+    height:25px;
+    background-color:#337AB7;    
+}
+
+#layout-submenu {
+    height:27px;
+    background-color:#f8f9f4;
+    border-bottom: solid 1px #cececc;
+}
+
+#breadcrumb {
+    height:27px;
+    line-height:27px;
+    padding-left:5px;
+    color:#494949;
+}
+
+#breadcrumb .center {
+    width:980px;
+    margin:0 auto;    
+}
+
+
+/*--------------------------------*/
+#related-items {
+    background-color:#fff;
+}
+
+.related-item-title
+{
+    margin-top:6px;
+    padding-left:12px;
+    font-weight:bold;
+    color:#555;
+}
+
+#related-items .auction-items {
+    padding:12px;
+}
+
+#related-items .auction-item {
+    border:solid 1px #ccc;
+    height:240px;
+    width: 220px;
+    background-color:#fff;
+    vertical-align:top;
+    overflow:hidden;
+}
+
+#related-items .auction-item .title {
+    height:30px;
+    line-height:30px;
+    text-align:center;
+    margin:5px 3px 5px 3px;
+    overflow:hidden;
+    border-bottom:none;
+}
+
+#related-items .auction-item .title a, 
+#related-items .auction-item .title a:link, 
+#related-items .auction-item .title a:visited {
+    text-decoration:none;
+    font-size:16px;
+}
+
+#related-items .auction-item .title a:hover {
+    text-decoration:underline;
+}
+
+#related-items .auction-item .picture {
+    text-align:center;
+    margin:5px 0px;    
+}
+
+#related-items .auction-item .picture img {
+    width:150px;
+    height:150px;
+}
+
+#related-items .original-price-rows {
+    margin-left:12px;
+}
+
+#related-items .saved-percent-rows {
+    margin-left:12px;
+}
+
+.section-zone {
+    margin-top:10px;   
+    border: solid 1px #D3D6C1;
+    padding: 6px 12px;
+    background-color: #ffffd1;
+}
+
+.sz-title {
+    font-weight:bold;    
+    color:#333;
+    margin-bottom:3px;
+}
+
+.sz-title span {
+    color: #ce6f1f;   
+    display:block; 
+}
+
+#related-items .last-bid-price {color:#111;}
+
+#rate-area 
+{
+    margin-bottom:6px;margin-left:6px;
+}
+
+#rate-area .rate 
+{
+    float:left;    
+}
+
+#rate-area .average {margin-left:6px;line-height:15px;}
+
+#rate-area2,#rate-area3 { margin-bottom:6px;margin-left:6px; }
+#rate-area2 .rate,#rate-area3 .rate {float:left;}
+#rate-area2 .average, #rate-area3 .average {margin-left:6px;line-height:15px;}
+
+.rate-label {float:left;width:60px;}
+
+
+#report-area {float:right;margin-top:5px;}
+
+#id-area {float:right;margin-top:5px;margin-right:265px;}
+#id-area span {color:#d2092d}
+
+/**************************************************/
+.menu-icon 
+{
+    display:none;
+    position: absolute;
+    left: 0;
+    z-index:999;
+    margin-left:3px;
+}
+.menu-icon a {border:none;display:block;width:20px;height:20px}
+.menu-icon a span 
+{
+    color:Red;
+    
+    display: block;
+    width: 22px;
+    height: 0;
+    -webkit-box-shadow: 0 10px 0 1px #fff, 0 16px 0 1px #fff, 0 22px 0 1px #fff;
+    box-shadow: 0 10px 0 1px #fff, 0 16px 0 1px #fff, 0 22px 0 1px #fff;
+    z-index:999;
+    margin:5px;
+    
+}
+
+#m-logo
+{
+    display:none;
+    color:#fff;
+    font-weight:bold;
+    position:absolute;
+    left:0px;
+    margin-left:45px;         
+    margin-top:12px;
+}
+
+#m-user-menu-zone
+{
+    display:none;
+    position:absolute;
+    right:0px;
+    margin-right:6px;         
+    margin-top:12px;
+    color:#fff;
+}
+
+#m-user-menu-zone a,#m-logo a {color:#fff;}
+
+#m-nav 
+{
+    list-style:none;
+    margin:0px;
+    padding:0px;       
+    z-index:9999;
+    position:absolute;
+    width:200px; 
+    margin-top:40px;
+    background-color:#fff;
+    display:none;
+}
+#m-nav li {}
+#m-nav a {padding:3px 10px;color:White;display:block;text-decoration:none;margin:1px;background-color:#d2092d;}
+#m-nav .selected {font-weight:bold;}
+
+#m-sub-nav
+{
+    list-style:none;
+    margin:0px;
+    padding:0px;       
+    background-color:#fff;
+    
+}
+
+#m-sub-nav li a 
+{
+    background-color:#f6f6f6;
+    color:#333;
+}
+
+#pane-main {width:100%;overflow:hidden;}
+
+.bbCodeImg {max-width:90%}
+
+#breadcrumb .center {padding-left:18px;}
+
+#related-items .auction-item {float:left;width:22%; overflow:hidden;margin-right:6px;}
+
+#tbl-auction-item {width:280px;;float:left;overflow:hidden;}
+#tbl-bids-list {float:right;width:400px;}
+
+.show-mobile {display:none;}
+
+table.auction-items {width:980px;}
+.footer-col-left {width:400px;}
+
+.hide-large {display:none;}
+
+input[type="text"], input[type="password"] {border: solid 1px #ccc;padding:3px 2px;}
+.searchHolder 
+{
+    padding: 3px 10px;
+    color: white;
+    display: block;
+    text-decoration: none;
+    margin: 1px;
+    background-color: #d2092d;
+    position:relative;
+    padding-right: 6px;
+}
+
+.searchHolder #txtKeyword2
+{
+    width: 97%;
+    padding: 3px;
+}
+    
+.searchHolder #btnSearch2
+{
+    background-color: transparent;
+    color: #ffffff;
+    cursor: pointer;
+    background-image: url("../../../assests/images/icon-search.png");
+    text-indent: -1000px;
+    width: 14px;
+    height: 14px;
+    padding: 0px;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-top: 9px;
+    margin-right: 15px;
+}
+
+
+#thumb-zone {
+    position:relative;    
+    height:65px;
+    margin-top:12px;
+}
+
+#thumb-zone #thumb-control-left {
+    position:absolute;
+    top:0px;
+    left:0px;
+    display:block;
+    width:11px;
+    height:24px;
+    background: url(../../../assests/images/arrow-brand.jpg) no-repeat left top;
+    margin-top: 18px;
+    margin-left: 0px;
+    z-index:1;
+}
+
+#thumb-zone #thumb-control-right {
+    position:absolute;
+    top:0px;
+    right:0px;
+    display:block;
+    width:11px;
+    height:24px;
+    background: url(../../../assests/images/arrow-brand.jpg) no-repeat right top;
+    margin-top:18px;
+    margin-right: 4px;
+    z-index:1;
+}
+
+#thumb-zone #thumb-items {
+	margin-left:18px;
+}
+
+#thumb-zone ul {
+	margin:0px;
+	padding:0px;
+	list-style-type:none;
+}
+
+#thumb-zone ul li {
+	float:left;
+	padding:0px 1px;
+	height:62px;
+	width:62px;
+	
+}
+
+#thumb-zone ul li img {
+	border:none;
+	vertical-align:middle;
+	margin:0 auto;
+	width:58px;
+	height:58px;
+	cursor:pointer;
+	border:solid 1px #fff;
+	padding:1px;
+}
+
+#thumb-zone ul li img:hover 
+{
+    border:solid 1px #d2092d;
+}
+
+#thumb-zone ul li a {
+	text-decoration:none;
+}
+
+.auction-images img {cursor:pointer;}
+
+#likefloat 
+{
+    width:80px; 
+    height:80px; 
+    top: 140px;
+    left: 10px;
+    position: fixed !important;
+    z-index: 1000;
+}
+
+.sharrre .box{
+    float:left;
+  }
+  .sharrre .count {
+    color:#444444;
+    display:block;
+    font-size:17px;
+    line-height:34px;
+    height:34px;
+    padding:4px 0;
+    position:relative;
+    text-align:center;
+    text-decoration:none;
+    width:50px;
+    background-color:#f6f6f6;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px; 
+  }
+  .sharrre .share {
+    color:#FFFFFF;
+    display:block;
+    font-size:11px;
+    height:16px;
+    line-height:16px;
+    margin-top:3px;
+    padding:0;
+    text-align:center;
+    text-decoration:none;
+    width:50px;
+    background-color:#9CCE39;
+    -webkit-border-radius:4px;
+    -moz-border-radius:4px;
+    border-radius:4px; 
+  }
+  .sharrre .buttons {
+    display:none;
+    float:left;
+    width:300px;
+  }
+  .sharrre .button {
+    float:left;
+    max-width:50px;
+    height:50px;
+    margin-left:10px;
+  }
+  
+  #facebook .share {
+    text-shadow: 1px 0px 0px #26427e;
+    filter: dropshadow(color=#26427e, offx=1, offy=0); 
+    border:1px solid #24417c;
+    background: #5582c9; /* Old browsers */
+    background: -moz-linear-gradient(top, #5582c9 0%, #33539a 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5582c9), color-stop(100%,#33539a)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #5582c9 0%,#33539a 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #5582c9 0%,#33539a 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #5582c9 0%,#33539a 100%); /* IE10+ */
+    background: linear-gradient(top, #5582c9 0%,#33539a 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5582c9', endColorstr='#33539a',GradientType=0 ); /* IE6-9 */
+    box-shadow: 0 1px 4px #DDDDDD, 0 1px 0 #80a1d6 inset;
+  }
+  
+  #msgBox2 #linkClose {position:absolute;right:0;top:0;margin:5px 5px 0px 0px;}
+  
+
+
+li a {white-space:nowrap;}
+
+#user-links {white-space:nowrap;}

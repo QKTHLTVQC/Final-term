@@ -1,0 +1,151 @@
+.bbCode {
+	padding: 1px;
+}
+
+.bbCode .bbCodeSmiley {
+	vertical-align: middle;
+}
+
+.bbCode .bbCodeHighlight {
+	color: #cc0000;
+	font-weight: bold;
+}
+
+.bbCode .bbCodeIndent {
+	margin-left: 20px;
+}
+
+.bbCode .bbCodeEmail, .bbCode .bbCodeURL {
+	text-decoration: none;
+}
+.bbCode .bbCodeEmail:active, .bbCode .bbCodeURL:active, .bbCode .bbCodeEmail:link, .bbCode .bbCodeURL:link, .bbCode .bbCodeEmail:visited, .bbCode .bbCodeURL:visited {
+	color: #0033cc;
+}
+.bbCode .bbCodeEmail:hover, .bbCode .bbCodeURL:hover {
+	color: #cc0000;
+}
+
+.bbCode .bbCodeList {
+	margin-left: 20px;
+}
+
+.bbCode .bbCodeList .bbCodeListItem {
+	margin-left: 20px;
+}
+
+.bbCode .bbCodeCode, .bbCode .bbCodePHP, .bbCode .bbCodeHTML {
+	border: solid 1px #cccccc;
+	margin: 0px 20px;
+}
+
+.bbCode .bbCodeCode .bbCodeCodeHeader, .bbCode .bbCodePHP .bbCodePHPHeader, .bbCode .bbCodeHTML .bbCodeHTMLHeader {
+	background-color: #ececec;
+	border-bottom: solid 1px #cccccc;
+	font-weight: bold;
+	padding: 3px;
+}
+
+.bbCode .bbCodeCode .bbCodeCodeBody, .bbCode .bbCodePHP .bbCodePHPBody, .bbCode .bbCodeHTML .bbCodeHTMLBody {
+	overflow: auto;
+	width: 100%;
+}
+
+.bbCode .bbCodeCode .bbCodeCodeBody .bbCodeCodeInnerBody, .bbCode .bbCodePHP .bbCodePHPBody .bbCodePHPInnerBody, .bbCode .bbCodeHTML .bbCodeHTMLBody .bbCodeHTMLInnerBody {
+	padding: 3px;
+}
+
+.bbCode .bbCodeQuote {
+	border: solid 1px #cccccc;
+	margin: 0px 20px;
+}
+
+.bbCode .bbCodeQuote .bbCodeQuoteHeader {
+	background-color: #ececec;
+	border-bottom: solid 1px #cccccc;
+	overflow: hidden;
+	width: 100%;
+}
+
+.bbCode .bbCodeQuote .bbCodeQuoteHeader .bbCodeQuoteInnerHeader {
+	font-weight: bold;
+	padding: 3px;
+}
+
+.bbCode .bbCodeQuote .bbCodeQuoteHeader .bbCodeQuoteInnerHeader span {
+	color: #0033cc;
+}
+
+.bbCode .bbCodeQuote .bbCodeQuoteBody {
+	overflow: hidden;
+	width: 100%;
+}
+
+.bbCode .bbCodeQuote .bbCodeQuoteBody .bbCodeQuoteInnerBody {
+	padding: 3px;
+}
+
+.bbCode .bbCodeGVideo {
+	border: solid 1px #cccccc;
+	margin: 0px auto;
+	width: 406px;
+}
+
+.bbCode .bbCodeGVideo .bbCodeGVideoHeader {
+	background-color: #ececec;
+	border-bottom: solid 1px #cccccc;
+	overflow: hidden;
+	width: 100%;
+}
+
+.bbCode .bbCodeGVideo .bbCodeGVideoHeader .bbCodeGVideoInnerHeader {
+	font-weight: bold;
+	padding: 3px;
+	text-align: center;
+}
+
+.bbCode .bbCodeGVideo .bbCodeGVideoHeader .bbCodeGVideoInnerHeader span {
+	color: #0033cc;
+}
+
+.bbCode .bbCodeGVideo .bbCodeGVideoBody {
+	height: 326px;
+	padding: 3px;
+}
+
+.bbCode .bbCodeGVideo .bbCodeGVideoBody embed {
+	height: 100%;
+	width: 100%;
+}
+
+.bbCode .bbCodeYouTube {
+	border: solid 1px #cccccc;
+	margin: 0px auto;
+	width: 640px;
+}
+
+.bbCode .bbCodeYouTube .bbCodeYouTubeHeader {
+	background-color: #ececec;
+	border-bottom: solid 1px #cccccc;
+	overflow: hidden;
+	width: 100%;
+}
+
+.bbCode .bbCodeYouTube .bbCodeYouTubeHeader .bbCodeYouTubeInnerHeader {
+	font-weight: bold;
+	padding: 3px;
+	text-align: center;
+}
+
+.bbCode .bbCodeYouTube .bbCodeYouTubeHeader .bbCodeYouTubeInnerHeader span {
+	color: #0033cc;
+}
+
+.bbCode .bbCodeYouTube .bbCodeYouTubeBody {
+	height: 390px;
+	padding: 3px;
+}
+
+.bbCode .bbCodeYouTube .bbCodeYouTubeBody object, .bbCode .bbCodeYouTube .bbCodeYouTubeBody embed {
+	height: 100%;
+	width: 100%;
+}
