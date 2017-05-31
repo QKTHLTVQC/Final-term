@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Đấu giá | Sàn đấu giá Online</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <meta name="keywords" content="Sàn đấu giá Online" />
+        <meta name="description" content="Sàn đấu giá Online" />
+        <link rel="stylesheet" type="text/css" href="../assests/css/all-stylesheets.css">
+        <script language="javascript" type="text/javascript" src="../assests/js/jquery-1.4.2.js"></script>
+        <script language="javascript" src="../assests/js/dialog.js" type="text/javascript"></script>
+        <script language="javascript" src="../assests/js/ckeditor/ckeditor.js" type="text/javascript"></script>
+        <script language="javascript" src="../assests/js/jquery.jscroll.min.js" type="text/javascript"></script>
+        <script language="javascript" src="../assests/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="../assests/js/sound2.js"></script>
+        <style type="text/css">
+            #select-page {
+                height: 27px;
+                line-height: 27px;
+                padding-left: 5px;
+                color: #494949;
+                height: 28px;
+                padding-left: 12px;
+                border-bottom: solid 1px #ccc;
+                background-color: #f6f6f6;
+            }
+            #select-page .center {
+                padding-left: 18px;
+                width: 980px;
+                margin: 0 auto;
+            }
+        </style>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    </head>    
+    <body>
+    <div class="col-md-1">
+        <div class="logo-sunshine">
+            <a href="../index.html">
+                <img src="../assests/images/v2/logo sunshine.jpg" width="60px">
+            </a>
+        </div>
+    </div>   
+    <div class="col-md-11">
+        <div class="info-sunshine">
+            <p>
+                Hotline: 19009669
+            </p>
+            <p>
+                Email: sunshine133@gmail.com
+            </p>
+        </div>
+    </div>  
+        <div id="layout">
+            <div id="layout-header">
+                <div id="header">                    
+                    <div id="search-area">
+                        <input type="text" maxlength="70" id="txtKeyword" tabindex="99" value="Tìm đấu giá..." onclick="if(this.value=='Tìm đấu giá...'){this.value=''}" onblur="if(this.value==''){this.value='Tìm đấu giá...'}" />
+                        <button id="btnSearch" tabindex="99">Tìm kiếm</button>
+                    </div>
+                    <div id="user-menu-zone">
+                        <ul id="user-links">
+                            <li><a href="login.html" class="txtBlue">Đăng nhập</a></li>
+                            <li class="sep" ></li>
+                            <li><a href="register.html" class="txtBlue">Đăng ký</a></li>
+                        </ul>
+                    </div>
+                    <div id="m-logo"><a href="/auctions/">SOHOT</a></div>
+                    <div id="m-user-menu-zone" class="txtRed">
+                        <a href="/login?url=/auctions/">Đăng nhập</a>
+                    </div>
+                    <div class="menu-icon">
+                        <a href=""><span></span></a>
+                    </div>
+                    <ul id="m-nav">
+                        <li>
+                            <a href="javascript:void(0);">Tìm kiếm</a>
+                        </li>
+                        <li>
+                            <div class="searchHolder">
+                                <input type="text" value="Tìm đấu giá..." id="txtKeyword2" onclick="if(this.value=='Tìm đấu giá...'){this.value=''}" onblur="if(this.value==''){this.value='Tìm đấu giá...'}" />
+                                <a href="javascript:void(0);" id="btnSearch2" />Tìm</a>
+                            </div>
+                        </li>                        
+                    </ul>
+                </div>
+            </div>
+            <div id="layout-menu">
+            </div>
+            <div id="layout-content">
+            <div id="select-page">
+                    <div class="center"><a href="../index.html">Trang chủ</a> &nbsp;›&nbsp; Thêm mới sản phẩm</div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="panel panel-default">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item active">
+                                        SẢN PHẨM
+                                    </a>
+                                    <a href="../index.html" class="list-group-item list-group-item-info">Tất cả</a>
+                                    <a href="technology.html" class="list-group-item list-group-item-info">Công nghệ</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Thời trang nữ</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Thời trang nam</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Phụ kiện thời trang</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Sức khỏe   &amp; Làm đẹp</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Điện tử    &amp; Điện máy</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Giải trí cá nhân</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Nhà    &amp; Sân vườn</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Xe hơi, xe máy, xe đạp</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Thực phẩm  &amp; Đồ uống</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Công nghiệp    &amp; Xây dựng</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Sản phẩm nghệ thuật</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Hàng tiêu dùng</a>
+                                    <a href="#" class="list-group-item list-group-item-info">Mẹ và bé</a>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item active">
+                                        CHỨC NĂNG TEST
+                                    </a>
+                                    <a href="login.html" class="list-group-item list-group-item-info">Đăng nhập</a>
+                                    <a href="register.html" class="list-group-item list-group-item-info">Đăng ký</a>
+                                    <a href="change_password.html" class="list-group-item list-group-item-info">Đổi mật khẩu</a>
+                                    <a href="add_product.html" class="list-group-item list-group-item-info">Thêm mới sản phẩm</a>
+                                    <a href="auctioning.html" class="list-group-item list-group-item-info">Đang đấu giá</a>
+                                    <a href="selling.html" class="list-group-item list-group-item-info">Đang bán</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                        <table width="100%" border="0" cellpadding="0" class="category">
+                            <tr>    
+                                <td height="20">Danh mục <font color="#FF0000">*</font></td>
+                                <td>                
+                                <div id="divcategory">
+                                    <select name="product_category_id[]" id="product_category_id_0" class="product_category required selected" onchange="getProductCategory(this)">
+                                        <option value="">-- Chọn danh mục --</option>
+                                        <option value="41">Thời trang nữ</option>
+                                        <option value="606">Thời trang nam</option>
+                                        <option value="625">Phụ kiện thời trang</option>
+                                        <option value="42">Sức khỏe &amp; Làm đẹp</option>
+                                        <option value="40">Điện tử &amp; Điện máy</option>
+                                        <option value="247">Giải trí cá nhân</option>
+                                        <option value="181">Nhà &amp; Sân vườn</option>
+                                        <option value="44">Xe hơi, xe máy, xe đạp</option>
+                                        <option value="206">Thực phẩm &amp; Đồ uống</option>
+                                        <option value="205">Công nghiệp &amp; Xây dựng</option>
+                                        <option value="58">Sản phẩm nghệ thuật</option>
+                                        <option value="456">Hàng tiêu dùng</option>
+                                        <option value="698">Mẹ và bé</option>
+                                        <option value="200">Deals &amp; Gifts</option>   
+                                    </select>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td width="14%" height="20">Mã sản phẩm</td>
+                              <td width="75%"><input class="selected" name="post_code" type="text" id="post_code" style="width:250px;"
+                              value=""></td>
+                            </tr>
+                            <tr>
+                              <td width="14%" height="20">Tên sản phẩm<font color="#FF0000">*</font></td>
+                              <td width="75%"><input class="selected" type="text" name="post_title" id="post_title" class="required" style="width:500px;"
+                              value=""></td>
+                            </tr>
+                            <tr>
+                              <td height="20">Thương hiệu</td>
+                              <td width="75%"><input class="selected" type="text" name="brand_id" id="brand_id" class="required" style="width:500px;"
+                              value=""></td>
+                            </tr>
+                            <tr>
+                              <td height="20">Tình trạng <font color="#FF0000">*</font></td>
+                              <td><select class="selected" id="ru_status" name="ru_status" class="required">
+                                <option value="">Chọn</option>
+                                <option  value="1">
+                                Mới                            </option>
+                                <option  value="2">
+                                Chưa sử dụng                            </option>
+                                <option  value="3">
+                                Đã sử dụng                            </option>
+                                <option  value="4">
+                                Đã qua sửa chữa                            </option>
+                                <option  value="5">
+                                Đã hư một phần                            </option>
+                              </select></td>
+                            </tr>
+                            <tr>
+                              <td height="20">Vận chuyển</td>
+                              <td><select class="selected" id="ru_shipping" name="ru_shipping">
+                                <option value="0" selected >Miễn phí
+                                </option>
+                                <option value="1" >Có tính phí
+                                </option>
+                              </select></td>
+                            </tr>
+                            <tr>
+                              <td height="20">Người bán tại</td>
+                              <td><span style="padding-bottom:6px">
+                                <select class="selected" name="ru_location" id="ru_location" class="required" data-placeholder="Chọn">
+                                  <option  value="1"> Hà Nội                    </option>
+                                  <option  value="2"> TP. Hồ Chí Minh                    </option>
+                                  <option  value="3"> Điện Biên                    </option>
+                                  <option  value="4"> Hòa Bình                    </option>
+                                  <option  value="5"> Lai Châu                    </option>
+                                  <option  value="6"> Lào Cai                    </option>
+                                  <option  value="7"> Sơn La                    </option>
+                                  <option  value="8"> Yên Bái                    </option>
+                                  <option  value="9"> Bắc Kạn                    </option>
+                                  <option  value="10">Cao Bằng                    </option>
+                                  <option  value="11">Hà Giang                    </option>
+                                  <option  value="12">Lạng Sơn                    </option>
+                                  <option  value="13">Thái Nguyên                    </option>
+                                  <option  value="14">Tuyên Quang                    </option>
+                                  <option  value="15">Bắc Giang                    </option>
+                                  <option  value="16">Bắc Ninh                    </option>
+                                  <option  value="17">Hà Nam                    </option>
+                                  <option  value="18">Hải Dương                    </option>
+                                  <option  value="19">Hải Phòng                    </option>
+                                  <option  value="20">Hưng Yên                    </option>
+                                  <option  value="21">Nam Định                    </option>
+                                  <option  value="22">Ninh Bình                    </option>
+                                  <option  value="23">Phú Thọ                    </option>
+                                  <option  value="24">Quảng Ninh                    </option>
+                                  <option  value="25">Vĩnh Phúc                    </option>
+                                  <option  value="26">Thái Bình                    </option>
+                                  <option  value="27">Hà Tĩnh                    </option>
+                                  <option  value="28">Nghệ An                    </option>
+                                  <option  value="29">Quảng Bình                    </option>
+                                  <option  value="30">Quảng Trị                    </option>
+                                  <option  value="31">Thanh Hóa                    </option>
+                                  <option  value="32">Thừa Thiên Huế                    </option>
+                                  <option  value="33">Đà Nẵng                    </option>
+                                  <option  value="34">Quảng Nam                    </option>
+                                  <option  value="35">Quảng Ngãi                    </option>
+                                  <option  value="36">Bình Định                    </option>
+                                  <option  value="37">Khánh Hòa                    </option>
+                                  <option  value="38">Ninh Thuận                    </option>
+                                  <option  value="39">Phú Yên                    </option>
+                                  <option  value="40">Bình Thuận                    </option>
+                                  <option  value="41">Đắc Lắc                    </option>
+                                  <option  value="42">Đắc Nông                    </option>
+                                  <option  value="43">Gia Lai                    </option>
+                                  <option  value="44">Kontum                    </option>
+                                  <option  value="45">Lâm Đồng                    </option>
+                                  <option  value="46">Bà Rịa – Vũng Tàu                    </option>
+                                  <option  value="47">Bình Dương                    </option>
+                                  <option  value="48">Bình Phước                    </option>
+                                  <option  value="49">Đồng Nai                    </option>
+                                  <option  value="50">Tây Ninh                    </option>
+                                  <option  value="51">An Giang                    </option>
+                                  <option  value="52">Bạc Liêu                    </option>
+                                  <option  value="53">Bến Tre                    </option>
+                                  <option  value="54">Cà Mau                    </option>
+                                  <option  value="55">Cần Thơ                    </option>
+                                  <option  value="56">Đồng Tháp                    </option>
+                                  <option  value="57">Hậu Giang                    </option>
+                                  <option  value="58">Kiên Giang                    </option>
+                                  <option  value="59">Long An                    </option>
+                                  <option  value="60">Sóc Trăng                    </option>
+                                  <option  value="61">Tiền Giang                    </option>
+                                  <option  value="62">Trà Vinh                    </option>
+                                  <option  value="63">Vĩnh Long                    </option>
+                                </select>
+                                <script type="text/javascript">
+                                // jQuery("#ru_location_tmp").chosen({width: "500px"});
+                                </script>
+                              </span></td>
+                            </tr>
+                            <tr>
+                              <td height="20">Hình thức bán<font color="#FF0000">*</font></td>
+                              <td style="padding-bottom:6px"><select class="selected" name="area_id" id="area_id" class="required" data-placeholder="Chọn">
+                                <option  value="8">
+                                Ship toàn quốc                            </option>
+                                <option  value="9">
+                                Ship trong tỉnh                            </option>
+                                <option  value="10">
+                                Tại cửa hàng                            </option>
+                                <option  value="11">
+                                Hàng Order                            </option>
+                              </select></td>
+                            </tr>
+                            <tr>
+                              <td height="20">Thời gian dự kiến giao hàng</td>
+                              <td style="padding-bottom:6px"><select class="selected" name="expected_delivery" id="expected_delivery">
+                                <option value="1-3 Ngày làm việc"  >1-3 Ngày làm việc
+                                </option>
+                                <option value="3-5 Ngày làm việc"  >3-5 Ngày làm việc
+                                </option>
+                                <option value="5-10 Ngày làm việc"  >5-10 Ngày làm việc
+                                </option>
+                                <option value="10-15 Ngày làm việc"  >10-15 Ngày làm việc
+                                </option>
+                                <option value="15-30 Ngày làm việc"  >15-30 Ngày làm việc
+                                </option>
+                              </select></td>
+                            </tr>
+                            <tr>
+                              <td height="20">Trọng lượng</td>
+                              <td><input class="selected" name="ru_weight" id="ru_weight" type="text" style="width:150px;" class="number"
+                                value=""/>
+                                (gram)
+                              </td>
+                            </tr>
+                            <tr>
+                              <td height="20">Thuế</td>
+                              <td><input class="selected" name="vat" id="vat" type="text" style="width:150px;" class="number" value=""/>
+                              (%)
+                                </td>
+                            </tr>
+                            <tr id="divBid1">
+                                <td height="20">Giá đấu thầu <font color="#FF0000">*</font></td>
+                                <td><input class="selected name="ru_auction" id="ru_auction" type="text" style="width:150px;" class="price "
+                                  value=""/>
+                                  (VNĐ)
+                                </td>
+                              </tr>
+                              <tr id="divBid2">
+                                <td height="20">Thời gian đấu giá</td>
+                                <td >bắt dầu
+                                  <input class="selected" type="text" id="auction_time" name="auction_time" value=""/>
+                                  <select class="selected" id="auction_hour" name="auction_hour">
+                                    <option selected value="0">
+                                    0                            </option>
+                                    <option  value="1">
+                                    1                            </option>
+                                    <option  value="2">
+                                    2                            </option>
+                                    <option  value="3">
+                                    3                            </option>
+                                    <option  value="4">
+                                    4                            </option>
+                                    <option  value="5">
+                                    5                            </option>
+                                    <option  value="6">
+                                    6                            </option>
+                                    <option  value="7">
+                                    7                            </option>
+                                    <option  value="8">
+                                    8                            </option>
+                                    <option  value="9">
+                                    9                            </option>
+                                    <option  value="10">
+                                    10                            </option>
+                                    <option  value="11">
+                                    11                            </option>
+                                    <option  value="12">
+                                    12                            </option>
+                                    <option  value="13">
+                                    13                            </option>
+                                    <option  value="14">
+                                    14                            </option>
+                                    <option  value="15">
+                                    15                            </option>
+                                    <option  value="16">
+                                    16                            </option>
+                                    <option  value="17">
+                                    17                            </option>
+                                    <option  value="18">
+                                    18                            </option>
+                                    <option  value="19">
+                                    19                            </option>
+                                    <option  value="20">
+                                    20                            </option>
+                                    <option  value="21">
+                                    21                            </option>
+                                    <option  value="22">
+                                    22                            </option>
+                                    <option  value="23">
+                                    23                            </option>
+                                  </select>
+                                  giờ
+                                  <select class="selected id="auction_minute" name="auction_minute">
+                                    <option selected value="0">
+                                    0                            </option>
+                                    <option  value="1">
+                                    1                            </option>
+                                    <option  value="2">
+                                    2                            </option>
+                                    <option  value="3">
+                                    3                            </option>
+                                    <option  value="4">
+                                    4                            </option>
+                                    <option  value="5">
+                                    5                            </option>
+                                    <option  value="6">
+                                    6                            </option>
+                                    <option  value="7">
+                                    7                            </option>
+                                    <option  value="8">
+                                    8                            </option>
+                                    <option  value="9">
+                                    9                            </option>
+                                    <option  value="10">
+                                    10                            </option>
+                                    <option  value="11">
+                                    11                            </option>
+                                    <option  value="12">
+                                    12                            </option>
+                                    <option  value="13">
+                                    13                            </option>
+                                    <option  value="14">
+                                    14                            </option>
+                                    <option  value="15">
+                                    15                            </option>
+                                    <option  value="16">
+                                    16                            </option>
+                                    <option  value="17">
+                                    17                            </option>
+                                    <option  value="18">
+                                    18                            </option>
+                                    <option  value="19">
+                                    19                            </option>
+                                    <option  value="20">
+                                    20                            </option>
+                                    <option  value="21">
+                                    21                            </option>
+                                    <option  value="22">
+                                    22                            </option>
+                                    <option  value="23">
+                                    23                            </option>
+                                    <option  value="24">
+                                    24                            </option>
+                                    <option  value="25">
+                                    25                            </option>
+                                    <option  value="26">
+                                    26                            </option>
+                                    <option  value="27">
+                                    27                            </option>
+                                    <option  value="28">
+                                    28                            </option>
+                                    <option  value="29">
+                                    29                            </option>
+                                    <option  value="30">
+                                    30                            </option>
+                                    <option  value="31">
+                                    31                            </option>
+                                    <option  value="32">
+                                    32                            </option>
+                                    <option  value="33">
+                                    33                            </option>
+                                    <option  value="34">
+                                    34                            </option>
+                                    <option  value="35">
+                                    35                            </option>
+                                    <option  value="36">
+                                    36                            </option>
+                                    <option  value="37">
+                                    37                            </option>
+                                    <option  value="38">
+                                    38                            </option>
+                                    <option  value="39">
+                                    39                            </option>
+                                    <option  value="40">
+                                    40                            </option>
+                                    <option  value="41">
+                                    41                            </option>
+                                    <option  value="42">
+                                    42                            </option>
+                                    <option  value="43">
+                                    43                            </option>
+                                    <option  value="44">
+                                    44                            </option>
+                                    <option  value="45">
+                                    45                            </option>
+                                    <option  value="46">
+                                    46                            </option>
+                                    <option  value="47">
+                                    47                            </option>
+                                    <option  value="48">
+                                    48                            </option>
+                                    <option  value="49">
+                                    49                            </option>
+                                    <option  value="50">
+                                    50                            </option>
+                                    <option  value="51">
+                                    51                            </option>
+                                    <option  value="52">
+                                    52                            </option>
+                                    <option  value="53">
+                                    53                            </option>
+                                    <option  value="54">
+                                    54                            </option>
+                                    <option  value="55">
+                                    55                            </option>
+                                    <option  value="56">
+                                    56                            </option>
+                                    <option  value="57">
+                                    57                            </option>
+                                    <option  value="58">
+                                    58                            </option>
+                                    <option  value="59">
+                                    59                            </option>
+                                  </select>
+                                  phút
+                                  &nbsp; &nbsp; &nbsp;
+                                  <br/>kết thúc
+                                  <input class="selected" type="text" id="auction_time_to" name="auction_time_to"
+                                  value=""/>
+                                  <select class="selected" id="auction_hour_to" name="auction_hour_to">
+                                    <option selected value="0">
+                                    0                            </option>
+                                    <option  value="1">
+                                    1                            </option>
+                                    <option  value="2">
+                                    2                            </option>
+                                    <option  value="3">
+                                    3                            </option>
+                                    <option  value="4">
+                                    4                            </option>
+                                    <option  value="5">
+                                    5                            </option>
+                                    <option  value="6">
+                                    6                            </option>
+                                    <option  value="7">
+                                    7                            </option>
+                                    <option  value="8">
+                                    8                            </option>
+                                    <option  value="9">
+                                    9                            </option>
+                                    <option  value="10">
+                                    10                            </option>
+                                    <option  value="11">
+                                    11                            </option>
+                                    <option  value="12">
+                                    12                            </option>
+                                    <option  value="13">
+                                    13                            </option>
+                                    <option  value="14">
+                                    14                            </option>
+                                    <option  value="15">
+                                    15                            </option>
+                                    <option  value="16">
+                                    16                            </option>
+                                    <option  value="17">
+                                    17                            </option>
+                                    <option  value="18">
+                                    18                            </option>
+                                    <option  value="19">
+                                    19                            </option>
+                                    <option  value="20">
+                                    20                            </option>
+                                    <option  value="21">
+                                    21                            </option>
+                                    <option  value="22">
+                                    22                            </option>
+                                    <option  value="23">
+                                    23                            </option>
+                                  </select>
+                                  giờ
+                                  <select class="selected" id="auction_minute_to" name="auction_minute_to">
+                                    <option selected value="0">
+                                    0                            </option>
+                                    <option  value="1">
+                                    1                            </option>
+                                    <option  value="2">
+                                    2                            </option>
+                                    <option  value="3">
+                                    3                            </option>
+                                    <option  value="4">
+                                    4                            </option>
+                                    <option  value="5">
+                                    5                            </option>
+                                    <option  value="6">
+                                    6                            </option>
+                                    <option  value="7">
+                                    7                            </option>
+                                    <option  value="8">
+                                    8                            </option>
+                                    <option  value="9">
+                                    9                            </option>
+                                    <option  value="10">
+                                    10                            </option>
+                                    <option  value="11">
+                                    11                            </option>
+                                    <option  value="12">
+                                    12                            </option>
+                                    <option  value="13">
+                                    13                            </option>
+                                    <option  value="14">
+                                    14                            </option>
+                                    <option  value="15">
+                                    15                            </option>
+                                    <option  value="16">
+                                    16                            </option>
+                                    <option  value="17">
+                                    17                            </option>
+                                    <option  value="18">
+                                    18                            </option>
+                                    <option  value="19">
+                                    19                            </option>
+                                    <option  value="20">
+                                    20                            </option>
+                                    <option  value="21">
+                                    21                            </option>
+                                    <option  value="22">
+                                    22                            </option>
+                                    <option  value="23">
+                                    23                            </option>
+                                    <option  value="24">
+                                    24                            </option>
+                                    <option  value="25">
+                                    25                            </option>
+                                    <option  value="26">
+                                    26                            </option>
+                                    <option  value="27">
+                                    27                            </option>
+                                    <option  value="28">
+                                    28                            </option>
+                                    <option  value="29">
+                                    29                            </option>
+                                    <option  value="30">
+                                    30                            </option>
+                                    <option  value="31">
+                                    31                            </option>
+                                    <option  value="32">
+                                    32                            </option>
+                                    <option  value="33">
+                                    33                            </option>
+                                    <option  value="34">
+                                    34                            </option>
+                                    <option  value="35">
+                                    35                            </option>
+                                    <option  value="36">
+                                    36                            </option>
+                                    <option  value="37">
+                                    37                            </option>
+                                    <option  value="38">
+                                    38                            </option>
+                                    <option  value="39">
+                                    39                            </option>
+                                    <option  value="40">
+                                    40                            </option>
+                                    <option  value="41">
+                                    41                            </option>
+                                    <option  value="42">
+                                    42                            </option>
+                                    <option  value="43">
+                                    43                            </option>
+                                    <option  value="44">
+                                    44                            </option>
+                                    <option  value="45">
+                                    45                            </option>
+                                    <option  value="46">
+                                    46                            </option>
+                                    <option  value="47">
+                                    47                            </option>
+                                    <option  value="48">
+                                    48                            </option>
+                                    <option  value="49">
+                                    49                            </option>
+                                    <option  value="50">
+                                    50                            </option>
+                                    <option  value="51">
+                                    51                            </option>
+                                    <option  value="52">
+                                    52                            </option>
+                                    <option  value="53">
+                                    53                            </option>
+                                    <option  value="54">
+                                    54                            </option>
+                                    <option  value="55">
+                                    55                            </option>
+                                    <option  value="56">
+                                    56                            </option>
+                                    <option  value="57">
+                                    57                            </option>
+                                    <option  value="58">
+                                    58                            </option>
+                                    <option  value="59">
+                                    59                            </option>
+                                  </select>
+                                  phút
+                                  
+                                </td>
+                              </tr>
+                              <tr id="divBid3">
+                                <td height="20">Giá bán ngay</td>
+                                <td><input class="selected" name="price" id="price" type="text" style="width:150px;" class="price"
+                                  value=""/>
+                                  (VNĐ)
+                                </td>
+                              </tr>                              
+                              <tr>
+                                <td height="20"><p> Mô tả sản phẩm</p></td>
+                                <td>
+                                <div class="selected">
+                                <textarea name="post_content" id="post_content" cols="100%"
+                                  rows="5"></textarea>
+                                  <script type="text/javascript">[CDATA[window.CKEDITOR_BASEPATH='/libs/ckeditor/';]]</script>
+                                  <script type="text/javascript" src="libs/ckeditor/ckeditor.js"></script>
+                                  <script type="text/javascript">//<![CDATA[
+                                  CKEDITOR.replace('post_content');
+                                  //]]></script>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td height="20">Thông số kỹ thuật</td>
+                                <td>
+                                <div class="selected">
+                                    <textarea name="post_techinfo" id="post_content2" cols="100%"
+                                      rows="5"></textarea>
+                                      <script type="text/javascript">//<![CDATA[
+                                      CKEDITOR.replace('post_techinfo');
+                                      //]]></script>
+                                </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>&nbsp;</td>
+                                <td>                        <input class="selected" name="Submit" type="submit" id="Submit" class="button-member" value="Thêm sản phẩm">
+                              </td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    
+                </div>
+            </div>
+            <div id="container">
+                <div id="lbl-msg" style="display:none;"></div>
+                <div id="pane-main">
+                    
+                </div>
+                <div class="clear"></div>
+            </span>
+        </div>
+    </div>
+</div>
+</div>
+<div id="layout-footer" style="margin-top:3px;" class="hid-mobile">
+<link rel="stylesheet" type="text/css" href="../assests/css/footer-style.css">
+<div id="footer-expand-zone">
+    <div id="fez-line"></div>
+    <div style="width:980px;margin: 0 auto;position:relative;">
+        <div id="fez-version">
+            Version: <span style="color:white">1.0.0</span>
+        </div>
+        <div id="fez-expand-icon"></div>
+        <div id="fez-powered-by">DEVELOPE BY SUNSHINE</div>
+    </div>
+</div>
+<div id="footer" style="text-align:right;color:#555;margin-bottom:0px;display:none;">
+    <table width="100%">
+        <tr>
+            <td class="footer-col-left" valign="top">
+                <div style="padding:0px;margin-left:0px;position:relative;margin-right:5px;">
+                    <a style="position:absolute;right:0px" href="index.html"><img width="98" height="64" alt="" title="" src="../assests/images/v2/logo sunshine.jpg" /></a>
+                    <table width="100%" style="text-align:left" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td width="40%" valign="top">
+                                <div class="frow"><a href="#">Hướng dẫn</a></div>
+                                <div class="frow"><a href="#">Qui chế hoạt động</a></div>
+                            </td>
+                            <td  width="60%">
+                                <div class="frow"><a href="#" target="_blank">Liên hệ</a></div>
+                                <div class="frow"><a href="#" target="_blank">Facebook</a></div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+            </td>
+            <td style="width:180px;text-align:left;font-size:12px;" valign="top" class="hid-mobile">
+                <b>Nhóm Shunshine - KHTN</b> <br />
+                KTX 135B Trần Hưng Đạo, Quận 1, TP. HCM   <br />                
+                Điện thoại: 19009669 <br />
+                E-mail: <a href="mailto:phamductien133@gmail.com">sunshine133@gmail.com</a>
+            </td>
+        </tr>
+    </table>
+    <div style="border-top: solid 0px #ddd;margin-top: 10px;text-align: left;font-size: 12px;">
+        <span class="m-pad-10">Sunshine Team</span>
+    </div>
+    <div class="clear"></div>
+</div>
+<script type="text/javascript" src="../assests/js/jquery.cookies.js"></script>
+<script type="text/javascript" src="../assests/js/my-jquery.js"></script>
+</div>
+<div class="show-mobile" style="margin-bottom:12px">
+<center><a id="link_noresponsive" href="javascript:void(0);">Xem giao diện đầy đủ</a></center>
+</div>
+<a href="#top" id="top-link"><img border="0px" width='32px' src="../assests/images/top.png"></a>
+</div>
+</body>
+</html>
