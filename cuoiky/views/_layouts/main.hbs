@@ -86,14 +86,16 @@
                     </div>
                     <div id="user-menu-zone">
                         <ul id="user-links">
+                        {{#if layoutModels.isLogged }}
                             <li><a href="/account/profile" class="txtBlue">Thông tin cá nhân</a></li>
                             <li class="sep" ></li>
+                            <li><a href="/account/logout" class="txtBlue">Đăng xuất</a></li>
+                        {{else}}
                             <li><a href="/account/login" class="txtBlue">Đăng nhập</a></li>
                             <li class="sep" ></li>
                             <li><a href="/account/register" class="txtBlue">Đăng ký</a></li>
-                            <li class="sep" ></li>
-                            <li><a href="/account/logout" class="txtBlue">Đăng xuất</a></li>
-
+                            
+                        {{/if}}
                         </ul>
                     </div>
                     <div id="m-user-menu-zone" class="txtBlue">

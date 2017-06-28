@@ -1,7 +1,7 @@
 var path = require('path');
 // var http = require('http');
 
-var express = require('express');
+var express = require('express'); 
 var session = require('express-session'); 
 // var fileStore = require('session-file-store')(session);
 var MySQLStore = require('express-mysql-session')(session);
@@ -22,6 +22,7 @@ var homeRoute = require('./routes/homeRoute');
 var productRoute = require('./routes/productRoute');
 var accountRoute = require('./routes/accountRoute');
 var cartRoute = require('./routes/cartRoute');
+var searchRoute = require('./routes/searchRoute');
 
 var app = express();
 
@@ -107,6 +108,7 @@ app.use('/home', homeRoute);
 app.use('/product', productRoute);
 app.use('/account', accountRoute);
 app.use('/cart', cartRoute);
+app.use('/search', searchRoute);
 
 app.get('/', function(req, res) {
     res.end('Welcome to my homepage!');
