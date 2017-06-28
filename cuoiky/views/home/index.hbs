@@ -1,0 +1,232 @@
+{{#section 'title'}}
+    Trang chủ
+{{/section}}
+
+{{#if isEmpty }}
+    Không có sản phẩm!
+{{else}}
+    <div class="row" style="margin-left: 5px;">
+        <h3 class="txtBlue">Top 5 sản phẩm có lượt ra giá nhiều nhất</h3>
+        <div id="top-bid">            
+            {{#each products }}
+            <div class="auction-item" id="auction-item-46617">
+                <div class="picture">
+                    <a href="/product/detail/{{SanPhamId}}"><img src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" border="0"></a>
+                </div>
+                <div class="title text-center">
+                    <a href="/product/detail/{{SanPhamId}}">{{TenSanPham}}</a>
+                </div>
+                <div class="rows-bids rows">Bids: <span class="bids rows">{{LuotRaGia}}</span></div>
+                <div class="rows-bid-price rows"><span class="last-bid-user rows">
+                    <span>Người bán:&nbsp;</span><span class="txtRed">{{IdKHBan}}</span>
+                    <div class="text-center">
+                    <a href="/u/"></a>&nbsp;</span> <br>
+                    &nbsp;&nbsp;<span class="last-bid-price rows text-center">{{GiaHienTai}}đ</span>
+                    </div>
+                </div>
+                <div class="server-time-rows">
+                    <table>
+                        <tbody><tr>
+                            <td class="glasshour"></td>
+                            <td id="time{{SanPhamId}}">23 : 44 : 42</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <script type="text/javascript">
+                    var timeout = null; // Timeout
+                    var stop = 1;
+                    var today = new Date();
+                    var curUnixTime = today.getTime();
+                    var t = 0;
+                    function time(id, timeEnd) {    
+                        if (timeEnd-curUnixTime <= 0) {
+                            stop = 0;
+                        }
+                        t = timeEnd-curUnixTime;
+                        var milliseconds = parseInt((t%1000)/100)
+                            , seconds = parseInt((t/1000)%60)
+                            , minutes = parseInt((t/(1000*60))%60)
+                            , hours = parseInt((t/(1000*60*60))%24);
+
+                        hours = (hours < 10) ? "0" + hours : hours;
+                        minutes = (minutes < 10) ? "0" + minutes : minutes;
+                        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                        // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+                        if (stop == 0) {
+                            document.getElementById('time'+id).innerText = 'Time out';
+
+                        } else {
+                            document.getElementById('time'+id).innerText = hours + ":" + minutes + ":" + seconds;
+                        }
+                        timeEnd = timeEnd - 1000;
+                        timeout = setTimeout(function() {
+                            if (stop == 1) timeEnd;
+                                time(id, timeEnd);
+                        }, 1000);
+                    }
+                    time({{SanPhamId}}, {{ThoiGianKetThuc}});
+                </script>
+                {{#if ../layoutModels.isLogged }}
+                <div class="submit-btn rows">
+                    <input readonly="true" class="price" type="text" value="110.000"><br><a title="Click để đặt giá" href="javascript:void(0);" class="btnBid" value="Bid" onclick="javascript:bid(this, 46617, 110000);return false;"><img src="assests/images/btn-bid.jpg" border="0"></a>
+                </div>
+                {{else}}
+                <div><p class="text-center">Đăng nhập để đấu giá</p></div>
+                {{/if}}
+            </div>                  
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="row" style="margin-left: 5px;">
+        <h3 class="txtBlue">Top 5 sản phẩm có giá cao nhất</h3>
+        <div id="top-bid">            
+            {{#each products2 }}
+            <div class="auction-item id="auction-item-46617">
+                <div class="picture">
+                    <a href="/product/detail/{{SanPhamId}}"><img src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" border="0"></a>
+                </div>
+                <div class="title text-center">
+                    <a href="/product/detail/{{SanPhamId}}">{{TenSanPham}}</a>
+                </div>
+                <div class="rows-bids rows">Bids: <span class="bids rows">{{LuotRaGia}}</span></div>
+                <div class="rows-bid-price rows"><span class="last-bid-user rows">
+                    <span>Người bán:&nbsp;</span><span class="txtRed">{{IdKHBan}}</span>
+                    <div class="text-center">
+                    <a href="/u/"></a>&nbsp;</span> <br>
+                    &nbsp;&nbsp;<span class="last-bid-price rows text-center">{{GiaHienTai}}đ</span>
+                    </div>
+                </div>
+                <div class="server-time-rows">
+                    <table>
+                        <tbody><tr>
+                            <td class="glasshour"></td>
+                            <td id="time2{{SanPhamId}}">23 : 44 : 42</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <script type="text/javascript">
+                    var timeout = null; // Timeout
+                    var stop = 1;
+                    var today = new Date();
+                    var curUnixTime = today.getTime();
+                    var t = 0;
+                    function time2(id, timeEnd) {    
+                        if (timeEnd-curUnixTime <= 0) {
+                            stop = 0;
+                        }
+                        t = timeEnd-curUnixTime;
+                        var milliseconds = parseInt((t%1000)/100)
+                            , seconds = parseInt((t/1000)%60)
+                            , minutes = parseInt((t/(1000*60))%60)
+                            , hours = parseInt((t/(1000*60*60))%24);
+
+                        hours = (hours < 10) ? "0" + hours : hours;
+                        minutes = (minutes < 10) ? "0" + minutes : minutes;
+                        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                        // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+                        if (stop == 0) {
+                            document.getElementById('time2'+id).innerText = 'Time out';
+
+                        } else {
+                            document.getElementById('time2'+id).innerText = hours + ":" + minutes + ":" + seconds;
+                        }
+                        timeEnd = timeEnd - 1000;
+                        timeout = setTimeout(function() {
+                            if (stop == 1) timeEnd;
+                                time2(id, timeEnd);
+                        }, 1000);
+                    }
+                    time2({{SanPhamId}}, {{ThoiGianKetThuc}});
+                </script>
+                {{#if ../layoutModels.isLogged }}
+                <div class="submit-btn rows">
+                    <input readonly="true" class="price" type="text" value="110.000"><br><a title="Click để đặt giá" href="javascript:void(0);" class="btnBid" value="Bid" onclick="javascript:bid(this, 46617, 110000);return false;"><img src="assests/images/btn-bid.jpg" border="0"></a>
+                </div>
+                {{else}}
+                <div><p class="text-center">Đăng nhập để đấu giá</p></div>
+                {{/if}}
+            </div>                  
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="row" style="margin-left: 5px;">
+        <h3 class="txtBlue">Top 5 sản phẩm gần kết thúc</h3>
+        <div id="top-bid">            
+            {{#each products3 }}
+            <div class="auction-item" id="auction-item-46617">
+                <div class="picture">
+                    <a href="/product/detail/{{SanPhamId}}"><img src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" border="0"></a>
+                </div>
+                <div class="title">
+                    <a href="/product/detail/{{SanPhamId}}">{{TenSanPham}}</a>
+                </div>
+                <div class="rows-bids rows">Bids: <span class="bids rows">{{LuotRaGia}}</span></div>
+                <div class="rows-bid-price rows"><span class="last-bid-user rows">
+                    <span>Người bán:&nbsp;</span><span class="txtRed">{{IdKHBan}}</span>
+                    <div class="text-center">
+                    <a href="/u/"></a>&nbsp;</span> <br>
+                    &nbsp;&nbsp;<span class="last-bid-price rows">{{GiaHienTai}}đ</span>
+                    </div>
+                </div>
+                <div class="server-time-rows">
+                    <table>
+                        <tbody><tr>
+                            <td class="glasshour"></td>
+                            <td id="time3{{SanPhamId}}">23 : 44 : 42</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <script type="text/javascript">
+                    var timeout = null; // Timeout
+                    var stop = 1;
+                    var today = new Date();
+                    var curUnixTime = today.getTime();
+                    var t = 0;
+                    function time3(id, timeEnd) {    
+                        if (timeEnd-curUnixTime <= 0) {
+                            stop = 0;
+                        }
+                        t = timeEnd-curUnixTime;
+                        var milliseconds = parseInt((t%1000)/100)
+                            , seconds = parseInt((t/1000)%60)
+                            , minutes = parseInt((t/(1000*60))%60)
+                            , hours = parseInt((t/(1000*60*60))%24);
+
+                        hours = (hours < 10) ? "0" + hours : hours;
+                        minutes = (minutes < 10) ? "0" + minutes : minutes;
+                        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                        // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+                        if (stop == 0) {
+                            document.getElementById('time3'+id).innerText = 'Time out';
+
+                        } else {
+                            document.getElementById('time3'+id).innerText = hours + ":" + minutes + ":" + seconds;
+                        }
+                        timeEnd = timeEnd - 1000;
+                        timeout = setTimeout(function() {
+                            if (stop == 1) timeEnd;
+                                time3(id, timeEnd);
+                        }, 1000);
+                    }
+                    time3({{SanPhamId}}, {{ThoiGianKetThuc}});
+                </script>
+                {{#if ../layoutModels.isLogged }}
+                <div class="submit-btn rows">
+                    <input readonly="true" class="price" type="text" value="110.000"><br><a title="Click để đặt giá" href="javascript:void(0);" class="btnBid" value="Bid" onclick="javascript:bid(this, 46617, 110000);return false;"><img src="assests/images/btn-bid.jpg" border="0"></a>
+                </div>
+                {{else}}
+                <div><p class="text-center">Đăng nhập để đấu giá</p></div>
+                {{/if}}
+            </div>                  
+            {{/each}}
+        </div>
+    </div>
+{{/if}}
+<script type="text/javascript">
+    
+</script>

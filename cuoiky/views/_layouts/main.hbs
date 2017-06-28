@@ -74,8 +74,15 @@
             <div id="layout-header">
                 <div id="header">                    
                     <div id="search-area">
-                        <input type="text" maxlength="70" id="txtKeyword" tabindex="99" value="Tìm đấu giá..." onclick="if(this.value=='Tìm đấu giá...'){this.value=''}" onblur="if(this.value==''){this.value='Tìm đấu giá...'}" />
-                        <button id="btnSearch" tabindex="99">Tìm kiếm</button>
+                        <form action="/search" method="get">
+                            <select style="height: 26px;" name="selectDanhMuc">
+                                {{#each layoutModels.categories }}
+                                    <option name="idDanhMuc" id="idDanhMuc" value="{{DanhMucId}}">{{TenDanhMuc}}</option>
+                                {{/each}}
+                            </select>
+                            <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
+                            <input type="submit" value="Tìm kiếm">
+                        </form>
                     </div>
                     <div id="user-menu-zone">
                         <ul id="user-links">
