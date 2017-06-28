@@ -1,0 +1,58 @@
+{{#section 'title'}}
+    Chỉnh sửa thông tin cá nhân
+{{/section}}
+
+<form class="form-horizontal" method="post" action="" id="frmEditProfile">
+	<div class="form-group">
+        <label class="col-sm-6 control-label" name="thongbao">{{thongbaoloi}}</label>
+    </div>
+
+    <div class="form-group">
+        <label for="txtHoTen" class="col-sm-2 control-label">Họ tên</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtHoTen" placeholder="Họ tên" name="hoten" value="{{user.hoten}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="txtEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-4">
+            <input type="email" class="form-control" id="txtEmail" placeholder="Email" name="email" value="{{user.email}}">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="txtmatkhaucu" class="col-sm-2 control-label">Mật khẩu cũ</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="txtmatkhaucu" placeholder="Mật khẩu" name="matkhaucu">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="txtmatkhau" class="col-sm-2 control-label">Mật khẩu mới</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="txtmatkhau" placeholder="Mật khẩu" name="matkhau">
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="txtXacNhanMatKhau" class="col-sm-2 control-label">Nhập lại mật khẩu</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="txtXacNhanMatKhau" placeholder="Xác nhận mật khẩu" name="xacnhanmatkhau">
+        </div>
+    </div>
+    {{!-- <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            captcha
+        </div>
+    </div> --}}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">
+            <i class="fa fa-check"></i>
+            Xác nhận
+            </button>
+        </div>
+    </div>
+</form>

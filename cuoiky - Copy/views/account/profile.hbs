@@ -1,0 +1,66 @@
+{{#section 'title'}}
+    Thông tin cá nhân
+{{/section}}
+
+<form class="form-horizontal" method="get" action="/account/editProfile" id="frmProfile">
+    <div class="form-group">
+        <label for="txtUsername" class="col-sm-2 control-label">Họ tên</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtHoTen" placeholder="Họ tên" name="hoten" value="{{user.hoten}}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtPWD" class="col-sm-2 control-label">Mật khẩu</label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="txtmatkhau" placeholder="Mật khẩu" name="matkhau" value="********" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtName" class="col-sm-2 control-label">Địa chỉ</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtName" placeholder="Địa chỉ" name="diachi" value="{{user.diachi}}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtEmail" class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtEmail" placeholder="Email" name="email" value="{{user.email}}" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="txtEmail" class="col-sm-2 control-label">Điểm đánh giá</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtEmail" placeholder="Điểm đánh giá" name="diemdanhgia" value="{{user.diemdanhgia}}" readonly>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="txtEmail" class="col-sm-2 control-label">Loại khách hàng</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtEmail" placeholder="Loại khách hàng" name="loaikhachhang" value="{{user.loaikhachhang}}" readonly>
+        </div>
+    </div>
+    {{!-- <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-6">
+            captcha
+        </div>
+    </div> --}}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">
+            <i class="fa fa-check"></i>
+            Chỉnh sửa
+            </button>
+        </div>
+    </div>
+</form>
+
+{{!-- var user = {
+                khachhangid: rows[0].KhachHangId,
+                hoten: rows[0].HoTen,
+                diachi: rows[0].DiaChi,
+                email: rows[0].Email,
+                diemdanhgia: rows[0].DiemDanhGia,
+                loaikhachhang: rows[0].LoaiKhachHang
+            } --}}
