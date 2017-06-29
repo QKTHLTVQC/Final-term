@@ -282,28 +282,14 @@
                        </div>
                        </ul>
                        </div>
+                       <span><h2 style="text-align: center; padding: 10px;">Mô tả sản phẩm</h2></span>
                        <div id="tab-contents">
                        <div class="tab-content tab-content-active" id="content-description">
-                       <div class="section-zone">
-                       <div class="sz-title" id="productDetail">
-                        <p>Thương hiệu: TARGUS - THZ195AP-51</p>
-                        <p>Xuất xứ: Chính hãng</p>
-                        <p>Tương thích: Ipad Air</p>
-                        <p>Màu: Xanh đen</p>
-                        <p>Kích thước: (mở rộng đầy đủ) 18 x 24,2 x 2,6 cm<br />
-                        Trọng lượng: 260grm</p>
-                       </div>
-                       </div>
-                       <img class="bbCodeImg" src="/assests/upload/2016/05/07-150913yeAJAPEENnpk.jpg" alt="" />
-                       <br />
-                       <br />
-                       <img class="bbCodeImg" src="/assests/upload/2016/05/07-150913fOFZdaDd8yZy.jpg" alt="" />
-                       <br />
-                       <br />
-                       <img class="bbCodeImg" src="/assests/upload/2016/05/07-15091387SHEoUAWjoU.jpg" alt="" />
-                       <br />
-                       <br />
-                       <img class="bbCodeImg" src="/assests/upload/2016/05/07-150914RsoPthmmI8aF.jpg" alt="" />
+                           <div class="section-zone">
+                               <div class="sz-title" id="productDetail">
+                               {{{ChiTietSanPham}}}
+                               </div>
+                           </div>
                        </div>
                     </div>
 
@@ -357,7 +343,7 @@
         timeConverter2({{ThoiGianKetThuc}});
 
     </script>
-    <script type="text/javascript">
+   <!--  <script type="text/javascript">
         function stringToHTML(){
             var str = "{{ChiTietSanPham}}";
             // <p>Thương hiệu: TARGUS - THZ195AP-51</p><p>Xuất xứ: Chính hãng</p><p>Tương thích: Ipad Air</p><p>Màu: Xanh đen</p><p>Kích thước: (mở rộng đầy đủ) 18 x 24,2 x 2,6 cm<br />Trọng lượng: 260grm</p>
@@ -365,7 +351,7 @@
             alert(213);
         };
         //stringToHTML();
-    </script>
+    </script> -->
 {{/with}}
 <script type="text/javascript">
     var visible_items = $('#thumb-items img').length >= 10 ? 10 : $('#thumb-items img').length;
