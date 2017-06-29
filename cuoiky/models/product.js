@@ -101,36 +101,7 @@ exports.loadNameCustomer = function(idLoaiDanhMuc) {
 
     var sql = mustache.render('select * from san_pham sp, khach_hang kh where kh.KhachHangId = sp.IdKHGiuGia and sp.IdLoaiDanhMuc = ' + idLoaiDanhMuc);
     db.load(sql).then(function(rows) {
-        if (rows) {
-            deferred.resolve(rows);
-        } else {
-            deferred.resolve(null);
-        }
-    });
-
-    return deferred.promise;
-}
-
-
-exports.loadNameSeller = function(idSanPham) {
-
-    var deferred = Q.defer();
-
-    var sql = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHBan and SanPhamId = ' + idSanPham);
-    db.load(sql).then(function(rows) {
-        deferred.resolve(rows[0]);
-    });
-
-    return deferred.promise;
-}
-
-exports.loadNameSellerbyId = function(idSanPham) {
-
-    var deferred = Q.defer();
-
-    var sql = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHGiuGia and SanPhamId = ' + idSanPham);
-    db.load(sql).then(function(rows) {
-        deferred.resolve(rows[0]);
+        deferred.resolve(rows);
     });
 
     return deferred.promise;
@@ -160,47 +131,14 @@ exports.loadHomePage = function() {
     return deferred.promise;
 }
 
-exports.loadName = function(idSanPham) {
 
+exports.loadSellerProduct = function(){
     var deferred = Q.defer();
-    var promises = [];
-    //Load tên người bán
-    var sqlNameSeller = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHBan and SanPhamId = ' + idSanPham);
-    promises.push(db.load(sqlNameSeller));
-    //Load tên người mua
-    var sqlNameCustomer = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHGiuGia and SanPhamId = ' + idSanPham);
-    promises.push(db.load(sqlNameCustomer));
-    //Load top 5 sp gần kết thúc đấu giá
-    
-    Q.all(promises).spread(function(NameSellerRow, NameCustomerRow) {
-        if(!NameSellerRow == null) {
-            var data = {
-                Seller: null,
-                Customer: NameCustomerRow[0]
-            }
-            deferred.resolve(data);        
-        } else if(NameCustomerRow == null)
-        {
-            var data = {
-                Seller: NameSellerRow[0],
-                Customer: null
-            }
-            deferred.resolve(data);        
-        } else if (NameCustomerRow == null && NameSellerRow == null) {
-            var data = {
-                Seller: null,
-                Customer: null
-            }
-            deferred.resolve(data);  
-        } else {
-            var data = {
-                Seller: NameSellerRow[0],
-                Customer: NameCustomerRow[0]
-            }
-            deferred.resolve(data);  
-        }
-        
+    var sql = mustache.render('select * from san_pham sp, khach_hang kh where kh.KhachHangId = sp.IdKHBan');
+    db.load(sql).then(function(rows) {
+        deferred.resolve(rows);
     });
+
     return deferred.promise;
 }
 

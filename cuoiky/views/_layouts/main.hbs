@@ -12,6 +12,7 @@
         <script language="javascript" src="/assests/js/dialog.js" type="text/javascript"></script>
         <script language="javascript" src="/assests/js/jquery.jscroll.min.js" type="text/javascript"></script>
         <script language="javascript" src="/assests/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+        <script src="//cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
         <script src="/assests/jquery-validation-1.12.0/jquery.validate.min.js"></script>
     </script>
 
@@ -34,7 +35,20 @@
         
         }
     </script>
-    
+    <script type="text/javascript">
+        var date = new Date();
+        var StrDate = date.toDateString();
+        $(document).ready(function setDate(){
+            $("#txtTimePost").val(StrDate);
+        });
+    </script>
+    <script>
+      $(function() {
+        $('div#froala-editor').froalaEditor({
+          iframe: true
+        })
+      });
+    </script>
 
     <style type="text/css">
         #select-page {
@@ -137,6 +151,16 @@
                                     </a>
                                     {{> categories this }}
                                 </div>
+                                {{#if layoutModels.isLogged }}
+                                <div class="list-group">
+                                    <a href="/home" class="list-group-item active">
+                                        Người bán
+                                    </a>
+                                    <a href="/seller/postProduct" class="list-group-item list-group-item-info">Đăng bán sản phẩm</a>
+                                    <a href="/seller/detailProduct" class="list-group-item list-group-item-info">Thông tin sản phẩm đang bán</a>
+                                    <a href="/seller/profile" class="list-group-item list-group-item-info">Quản lý hồ sơ</a>
+                                </div>
+                                {{/if}}
                             </div>
                         </div>
                         <div class="col-md-9">

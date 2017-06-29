@@ -1,0 +1,23 @@
+{{#section 'title'}}
+	Người bán
+{{/section}}
+
+{{#if isEmpty }}
+	<div class="row">
+		<div class="col-md-12">
+			Không có dữ liệu
+		</div>
+	</div>
+{{else}}
+	<div class="row">
+		<div class="col-md-12">
+			<a href="/seller/postProduct">Đăng bán sản phẩm</a>
+		</div>
+		<div class="col-md-12">
+			<a href="/seller/detailProduct">Quản lý sản phẩm đã đăng</a>
+		</div>
+		<div class="col-md-12">
+			<a href="/seller/profile">Quản lý hồ sơ</a>
+		</div>
+	</div>
+{{/if}}

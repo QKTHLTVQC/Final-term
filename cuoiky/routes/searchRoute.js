@@ -106,14 +106,11 @@ searchRoute.get('/', function(req, res) {
         var aProducts = [];
         aProducts = rows.list;
         var aCusName = rows.customerName;
-        if (aCusName.length != 0) {
-            for (var i = 0; i< aProducts.length; i++) {
-                aProducts[i]['nameCustomer'] = aCusName[i]['HoTen'].slice(0,5) +"*****";
-            }
-        } else {
-            aProducts[i]['nameCustomer'] = "Không có";
+        for (var i = 0; i< aProducts.length; i++) {
+            aProducts[i]['nameCustomer'] = aCusName[i]['HoTen'].slice(0,5) +"*****";
         }
         //aProducts[0]['name'] = "123";
+        console.log(aProducts);
         var ret = {
             layoutModels: res.locals.layoutModels,
             products: aProducts,
