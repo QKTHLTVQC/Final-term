@@ -95,29 +95,69 @@ exports.loadTopEndTime = function() {
     return deferred.promise;
 }
 
-exports.searchProduct = function(nameProduct, idLoaiDanhMuc, limit, offset) {
+exports.loadNameCustomer = function(idLoaiDanhMuc) {
+
+    var deferred = Q.defer();
+
+    var sql = mustache.render('select * from san_pham sp, khach_hang kh where kh.KhachHangId = sp.IdKHGiuGia and sp.IdLoaiDanhMuc = ' + idLoaiDanhMuc);
+    db.load(sql).then(function(rows) {
+        deferred.resolve(rows);
+    });
+
+    return deferred.promise;
+}
+
+exports.loadHomePage = function() {
+
+    var deferred = Q.defer();
+    var promises = [];
+    //Load top 5 sp có lượt ra giá nhiều nhất
+    var sqlLoadTopBid = mustache.render('select * from san_pham ORDER BY LuotRaGia DESC LIMIT 5');
+    promises.push(db.load(sqlLoadTopBid));
+    //Load top 5 sp có giá cao nhất
+    var sqlLoadTopCost = mustache.render('select * from san_pham ORDER BY GiaHienTai DESC LIMIT 5');
+    promises.push(db.load(sqlLoadTopCost));
+    //Load top 5 sp gần kết thúc đấu giá
+    var sqlLoadTopEndTime = mustache.render('select * from san_pham ORDER BY ThoiGianKetThuc ASC LIMIT 5');
+    promises.push(db.load(sqlLoadTopEndTime));
+    Q.all(promises).spread(function(topBidRow, topCostRow, topEndTimeRow) {
+        var data = {
+            topBid: topBidRow,
+            topCost: topCostRow,
+            topEndTime: topEndTimeRow
+        }
+        deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+
+exports.searchProduct = function(nameProduct, idLoaiDanhMuc, limit, offset, sort) {
 
     var deferred = Q.defer();
     var promises = [];
     var sql = '';
     if (nameProduct == "") {
-        var sqlCount = mustache.render('select count(*) as total from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc);
+        var sqlCount = mustache.render('select count(*) as total from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc );
         promises.push(db.load(sqlCount));
 
-        var sqlCatId = mustache.render('select IdLoaiDanhMuc as catID from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc);
+        var sqlCatId = mustache.render('select IdLoaiDanhMuc as catID from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc );
         promises.push(db.load(sqlCatId));
 
-        var sqlProName = mustache.render('select TenSanPham as proName from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc);
+        var sqlProName = mustache.render('select TenSanPham as proName from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc );
         promises.push(db.load(sqlProName));
 
-        var sql = mustache.render('select * from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc + ' limit ' + limit + ' offset ' + offset);
+        var sqlCusName = mustache.render('select * from san_pham sp, khach_hang kh where kh.KhachHangId = sp.IdKHGiuGia and sp.IdLoaiDanhMuc = ' + idLoaiDanhMuc );
+        promises.push(db.load(sqlCusName));
+
+        var sql = mustache.render('select * from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc + ' ' + sort + ' limit ' + limit + ' offset ' + offset);
         promises.push(db.load(sql));
 
-        Q.all(promises).spread(function(totalRow, catIdRow, proNameRow, rows) {
+        Q.all(promises).spread(function(totalRow, catIdRow, proNameRow, cusNameRow, rows) {
             var data = {
                 total: totalRow[0].total,
                 catId: catIdRow[0].catID,
                 proName: "",
+                customerName: cusNameRow,
                 list: rows
             }
             deferred.resolve(data);
@@ -130,15 +170,23 @@ exports.searchProduct = function(nameProduct, idLoaiDanhMuc, limit, offset) {
         //     deferred.resolve(rows);
         // });
     } else {
-        var sqlCount = mustache.render('select count(*) as total from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc +' and TenSanPham = "' + nameProduct +'"');
+        var sqlCount = mustache.render('select count(*) as total from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc +' and TenSanPham = "' + nameProduct +'"' );
         promises.push(db.load(sqlCount));
 
-        var sql = mustache.render('select * from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc +' and TenSanPham = "' + nameProduct +'"' + ' limit ' + limit + ' offset ' + offset);
+        var sqlCatId = mustache.render('select IdLoaiDanhMuc as catID from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc +' and TenSanPham = "' + nameProduct +'"' );
+        promises.push(db.load(sqlCatId));
+
+        var sqlProName = mustache.render('select TenSanPham as proName from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc +' and TenSanPham = "' + nameProduct +'"' );
+        promises.push(db.load(sqlProName));
+
+        var sql = mustache.render('select * from san_pham where IdLoaiDanhMuc = ' + idLoaiDanhMuc +' and TenSanPham = "' + nameProduct +'"'+ ' ' + sort  + ' limit ' + limit + ' offset ' + offset );
         promises.push(db.load(sql));
 
-        Q.all(promises).spread(function(totalRow, rows) {
+        Q.all(promises).spread(function(totalRow, catIdRow, proNameRow, rows) {
             var data = {
                 total: totalRow[0].total,
+                catId: catIdRow[0].catID,
+                proName: proNameRow[0].proName,
                 list: rows
             }
             deferred.resolve(data);

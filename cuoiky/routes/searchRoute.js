@@ -78,28 +78,48 @@ searchRoute.get('/', function(req, res) {
     var rec_per_page = 4;
     var curPage = req.query.page ? req.query.page : 1;
     var offset = (curPage - 1) * rec_per_page;
-    product.searchProduct(req.query.txtKeyword, req.query.selectDanhMuc, rec_per_page, offset)
+    var numSort = req.query.sort ? req.query.sort : 0;
+    var sort = "";
+    if (numSort == 1) {
+        sort = " ORDER BY ThoiGianKetThuc ASC ";
+    } else if (numSort == 2) {
+        sort = " ORDER BY GiaHienTai DESC ";
+    }
+    product.searchProduct(req.query.txtKeyword, req.query.selectDanhMuc, rec_per_page, offset, sort)
         .then(function(rows) {
         var number_of_pages = rows.total / rec_per_page;
         if (rows.total % rec_per_page > 0) {
             number_of_pages++;
         }
-
+        var index = 1;
         var pages = [];
         for (var i = 1; i <= number_of_pages; i++) {
+            index = i;
             pages.push({
                 pageValue: i,
                 catId: rows.catId,
                 proName: rows.proName,
-                isActive: i === +curPage
+                isActive: i === +curPage,
+                sort: numSort            
             });
         }
+        var aProducts = [];
+        aProducts = rows.list;
+        var aCusName = rows.customerName;
+        for (var i = 0; i< aProducts.length; i++) {
+            aProducts[i]['nameCustomer'] = aCusName[i]['HoTen'].slice(0,5) +"*****";
+        }
+        //aProducts[0]['name'] = "123";
+        console.log(aProducts);
         var ret = {
             layoutModels: res.locals.layoutModels,
-            products: rows.list,
+            products: aProducts,
             isEmpty: rows.total===0,
-            
+            pageValue: curPage,
+            catId: rows.catId,
+            proName: rows.proName,
             pages: pages,
+            sort: numSort,
             curPage: curPage,
             prevPage: curPage - 1,
             nextPage: curPage + 1,
