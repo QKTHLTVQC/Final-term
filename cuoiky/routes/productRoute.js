@@ -71,28 +71,51 @@ productRoute.get('/byCat/:id', function(req, res) {
 productRoute.get('/detail/:id', function(req, res) {
     product.loadDetail(req.params.id)
         .then(function(pro) {
-            if (pro) {
-                res.render('product/detail', {
-                    layoutModels: res.locals.layoutModels,
-                    product: pro,
+            var id = req.params.id;
+            var aProducts= pro;
+                // product.loadNameSeller(req.params.id)
+                //     .then(function(rowsName) {
+                //         aProducts['nameSeller'] = rowsName['HoTen'];
+                //         var DiemDanhGia = (rowsName['DiemDGDuong'] - rowsName['DiemDGAm'])/(rowsName['DiemDGDuong'] + rowsName['DiemDGAm']) * 100;
+                //         DiemDanhGia = DiemDanhGia.toFixed(1);
+                //         aProducts['pointSeller'] = DiemDanhGia;
+                //     product.loadNameSellerbyId(req.params.id)
+                //         .then(function(rowsName2) {
+                //             aProducts['nameCustomer'] = rowsName2['HoTen'];
+                //             var DiemDanhGia2 = (rowsName2['DiemDGDuong'] - rowsName2['DiemDGAm'])/(rowsName2['DiemDGDuong'] + rowsName2['DiemDGAm']) * 100;
+                //             DiemDanhGia2 = DiemDanhGia2.toFixed(1);
+                //             aProducts['pointCustomer'] = DiemDanhGia2;
+                //     });
+                // });
+                product.loadName(id)
+                    .then(function(rowsName) {
+                        var DiemDanhGia = 0;
+                        var DiemDanhGia2 = 0;
+                        if (rowsName.Seller != null) {
+                            aProducts['nameSeller'] = rowsName.Seller['HoTen'];
+                            DiemDanhGia = (rowsName.Seller['DiemDGDuong'] - rowsName.Seller['DiemDGAm'])/(rowsName.Seller['DiemDGDuong'] + rowsName.Seller['DiemDGAm']) * 100;
+                            DiemDanhGia = DiemDanhGia.toFixed(1);
+                            aProducts['pointSeller'] = DiemDanhGia;
+                        } else {
+                            aProducts['nameSeller'] = "Không có"; 
+                            aProducts['pointSeller'] = "0";
+                        }
+
+                        if (rowsName.Customer != null) {
+                            aProducts['nameCustomer'] = rowsName.Customer['HoTen'];
+                            DiemDanhGia2 = (rowsName.Customer['DiemDGDuong'] - rowsName.Customer['DiemDGAm'])/(rowsName.Customer['DiemDGDuong'] + rowsName.Customer['DiemDGAm']) * 100;
+                            DiemDanhGia2 = DiemDanhGia2.toFixed(1);
+                            aProducts['pointCustomer'] = DiemDanhGia2;
+                        } else {
+                            aProducts['nameCustomer'] = "Không có"; 
+                            aProducts['pointCustomer'] = "0";
+                        }
+
+                        res.render('product/detail', {
+                        layoutModels: res.locals.layoutModels,
+                            product: aProducts,
+                        });
                 });
-            } else {
-                res.redirect('/home');
-            }
-        });
-});
-productRoute.get('seller/profile', function(req, res) {
-    product.loadSellerProduct(req.params.id)
-        .then(function(pro) {
-            if (pro) {
-                res.render('seller/profile', {
-                    layoutModels: res.locals.layoutModels,
-                    products: list,
-                    isEmpty: list.length === 0
-                });
-            } else {
-                res.redirect('/home');
-            }
         });
 });
 
