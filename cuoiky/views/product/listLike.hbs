@@ -13,13 +13,17 @@
 {{/section}}
 
 {{#if isEmpty }}
+    <form style="margin-left: 5px;margin-top: 10px;" action="/product/searchLike" method="get">
+        <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
+        <input type="submit" value="Tìm kiếm">
+    </form>
     Không có sản phẩm!
 {{else}}
     <form id="frmAddToCart" method="post" action="/cart/add1">
         <input type="hidden" id="txtP" name="proId" />
         <input type="hidden" id="txtC" name="catId" value="{{catId}}" />
     </form>
-    <form style="margin-left: 5px;margin-top: 10px;" action="/product/search" method="get">
+    <form style="margin-left: 5px;margin-top: 10px;" action="/product/searchLike" method="get">
         <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
         <input type="submit" value="Tìm kiếm">
     </form>

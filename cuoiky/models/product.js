@@ -343,7 +343,6 @@ exports.searchProductLike = function(id, nameProduct, limit, offset) {
         limit: limit,
         offset: offset
     };
-    return deferred.promise;
     if (nameProduct == "") {
         var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
         promises.push(db.load(sqlCount));
@@ -359,10 +358,10 @@ exports.searchProductLike = function(id, nameProduct, limit, offset) {
             deferred.resolve(data);
         });
     } else {
-        var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
+        var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and sp.TenSanPham = "{{nameProduct}}" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
         promises.push(db.load(sqlCount));
 
-        var sql = mustache.render('select * from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId limit {{limit}} offset {{offset}}', view);
+        var sql = mustache.render('select * from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and sp.TenSanPham = "{{nameProduct}}" and ds.KhachHangId = {{id}}  and sp.SanPhamId = ds.SanPhamId limit {{limit}} offset {{offset}}', view);
         promises.push(db.load(sql));
 
         Q.all(promises).spread(function(totalRow, rows) {
