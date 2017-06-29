@@ -107,6 +107,31 @@ exports.loadNameCustomer = function(idLoaiDanhMuc) {
     return deferred.promise;
 }
 
+
+exports.loadNameSeller = function(idSanPham) {
+
+    var deferred = Q.defer();
+
+    var sql = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHBan and SanPhamId = ' + idSanPham);
+    db.load(sql).then(function(rows) {
+        deferred.resolve(rows[0]);
+    });
+
+    return deferred.promise;
+}
+
+exports.loadNameSellerbyId = function(idSanPham) {
+
+    var deferred = Q.defer();
+
+    var sql = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHGiuGia and SanPhamId = ' + idSanPham);
+    db.load(sql).then(function(rows) {
+        deferred.resolve(rows[0]);
+    });
+
+    return deferred.promise;
+}
+
 exports.loadHomePage = function() {
 
     var deferred = Q.defer();
@@ -125,6 +150,28 @@ exports.loadHomePage = function() {
             topBid: topBidRow,
             topCost: topCostRow,
             topEndTime: topEndTimeRow
+        }
+        deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+
+exports.loadName = function(idSanPham) {
+
+    var deferred = Q.defer();
+    var promises = [];
+    //Load tên người bán
+    var sqlNameSeller = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHBan and SanPhamId = ' + idSanPham);
+    promises.push(db.load(sqlNameSeller));
+    //Load tên người mua
+    var sqlNameCustomer = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHGiuGia and SanPhamId = ' + idSanPham);
+    promises.push(db.load(sqlNameCustomer));
+    //Load top 5 sp gần kết thúc đấu giá
+    
+    Q.all(promises).spread(function(NameSellerRow, NameCustomerRow) {
+        var data = {
+            Seller: NameSellerRow[0],
+            Customer: NameCustomerRow[0]
         }
         deferred.resolve(data);
     });

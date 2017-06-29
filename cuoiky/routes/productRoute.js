@@ -71,10 +71,38 @@ productRoute.get('/byCat/:id', function(req, res) {
 productRoute.get('/detail/:id', function(req, res) {
     product.loadDetail(req.params.id)
         .then(function(pro) {
+            var aProducts= pro;
             if (pro) {
+                // product.loadNameSeller(req.params.id)
+                //     .then(function(rowsName) {
+                //         aProducts['nameSeller'] = rowsName['HoTen'];
+                //         var DiemDanhGia = (rowsName['DiemDGDuong'] - rowsName['DiemDGAm'])/(rowsName['DiemDGDuong'] + rowsName['DiemDGAm']) * 100;
+                //         DiemDanhGia = DiemDanhGia.toFixed(1);
+                //         aProducts['pointSeller'] = DiemDanhGia;
+                //     product.loadNameSellerbyId(req.params.id)
+                //         .then(function(rowsName2) {
+                //             aProducts['nameCustomer'] = rowsName2['HoTen'];
+                //             var DiemDanhGia2 = (rowsName2['DiemDGDuong'] - rowsName2['DiemDGAm'])/(rowsName2['DiemDGDuong'] + rowsName2['DiemDGAm']) * 100;
+                //             DiemDanhGia2 = DiemDanhGia2.toFixed(1);
+                //             aProducts['pointCustomer'] = DiemDanhGia2;
+                //     });
+                // });
+                product.loadName(req.params.id)
+                    .then(function(rowsName) {
+                        aProducts['nameSeller'] = rowsName.Seller['HoTen'];
+                        var DiemDanhGia = (rowsName.Seller['DiemDGDuong'] - rowsName.Seller['DiemDGAm'])/(rowsName.Seller['DiemDGDuong'] + rowsName.Seller['DiemDGAm']) * 100;
+                        DiemDanhGia = DiemDanhGia.toFixed(1);
+                        aProducts['pointSeller'] = DiemDanhGia;
+
+                        aProducts['nameCustomer'] = rowsName.Customer['HoTen'];
+                        var DiemDanhGia2 = (rowsName.Customer['DiemDGDuong'] - rowsName.Customer['DiemDGAm'])/(rowsName.Customer['DiemDGDuong'] + rowsName.Customer['DiemDGAm']) * 100;
+                        DiemDanhGia2 = DiemDanhGia2.toFixed(1);
+                        aProducts['pointCustomer'] = DiemDanhGia2;
+                });    
+                
                 res.render('product/detail', {
                     layoutModels: res.locals.layoutModels,
-                    product: pro,
+                    product: aProducts,
                 });
             } else {
                 res.redirect('/home');
