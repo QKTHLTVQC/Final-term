@@ -11,11 +11,13 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "crypto": "0.0.3",
+    "dateformat": "^2.0.0",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
     "express-handlebars-sections": "^1.0.1",
     "express-mysql-session": "^1.2.0",
     "express-session": "^1.15.2",
+    "format-currency": "^1.0.0",
     "moment": "^2.18.1",
     "morgan": "^1.8.1",
     "mustache": "^2.3.0",

@@ -179,7 +179,7 @@
                         </strong>
                         </div>
                         <div class="start-time-rows">
-                        Người bán: <a href="/product/userDetail/{{idSeller}}">
+                        Người bán: <a href="#">
                         {{nameSeller}}</a>
                         </div>
                         <div class="start-time-rows">

@@ -110,7 +110,6 @@ productRoute.get('/detail/:id', function(req, res) {
 
                         if (rowsName.Customer != null) {
                             aProducts['nameCustomer'] = rowsName.Customer['HoTen'];
-							aProducts['idCustomer'] = rowsName.Customer['KhachHangId'];
                             DiemDanhGia2 = (rowsName.Customer['DiemDGDuong'] - rowsName.Customer['DiemDGAm'])/(rowsName.Customer['DiemDGDuong'] + rowsName.Customer['DiemDGAm']) * 100;
                             DiemDanhGia2 = DiemDanhGia2.toFixed(1);
                             aProducts['pointCustomer'] = DiemDanhGia2;

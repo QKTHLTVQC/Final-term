@@ -116,7 +116,7 @@ exports.loadNameSeller = function(idSanPham) {
 
     var deferred = Q.defer();
 
-    var sql = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHBan and SanPhamId = ' + idSanPham);
+    var sql = mustache.render('select * from san_pham, khach_hang where IdKHBan =KhachHangId  and SanPhamId = ' + idSanPham);
     db.load(sql).then(function(rows) {
         deferred.resolve(rows[0]);
     });

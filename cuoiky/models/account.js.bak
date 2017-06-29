@@ -133,7 +133,7 @@ exports.ratingPlus = function(entity) {
 		console.log("update");
         deferred.resolve(user);
     });
-    db.insert(sqlInsert).then(function(insertId) {
+    db.insert(sql).then(function(insertId) {
 		console.log("insert");
         deferred.resolve(insertId);
 
