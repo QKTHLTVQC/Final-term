@@ -71,8 +71,8 @@ productRoute.get('/byCat/:id', function(req, res) {
 productRoute.get('/detail/:id', function(req, res) {
     product.loadDetail(req.params.id)
         .then(function(pro) {
+            var id = req.params.id;
             var aProducts= pro;
-            if (pro) {
                 // product.loadNameSeller(req.params.id)
                 //     .then(function(rowsName) {
                 //         aProducts['nameSeller'] = rowsName['HoTen'];
@@ -87,26 +87,35 @@ productRoute.get('/detail/:id', function(req, res) {
                 //             aProducts['pointCustomer'] = DiemDanhGia2;
                 //     });
                 // });
-                product.loadName(req.params.id)
+                product.loadName(id)
                     .then(function(rowsName) {
-                        aProducts['nameSeller'] = rowsName.Seller['HoTen'];
-                        var DiemDanhGia = (rowsName.Seller['DiemDGDuong'] - rowsName.Seller['DiemDGAm'])/(rowsName.Seller['DiemDGDuong'] + rowsName.Seller['DiemDGAm']) * 100;
-                        DiemDanhGia = DiemDanhGia.toFixed(1);
-                        aProducts['pointSeller'] = DiemDanhGia;
+                        var DiemDanhGia = 0;
+                        var DiemDanhGia2 = 0;
+                        if (rowsName.Seller != null) {
+                            aProducts['nameSeller'] = rowsName.Seller['HoTen'];
+                            DiemDanhGia = (rowsName.Seller['DiemDGDuong'] - rowsName.Seller['DiemDGAm'])/(rowsName.Seller['DiemDGDuong'] + rowsName.Seller['DiemDGAm']) * 100;
+                            DiemDanhGia = DiemDanhGia.toFixed(1);
+                            aProducts['pointSeller'] = DiemDanhGia;
+                        } else {
+                            aProducts['nameSeller'] = "Không có"; 
+                            aProducts['pointSeller'] = "0";
+                        }
 
-                        aProducts['nameCustomer'] = rowsName.Customer['HoTen'];
-                        var DiemDanhGia2 = (rowsName.Customer['DiemDGDuong'] - rowsName.Customer['DiemDGAm'])/(rowsName.Customer['DiemDGDuong'] + rowsName.Customer['DiemDGAm']) * 100;
-                        DiemDanhGia2 = DiemDanhGia2.toFixed(1);
-                        aProducts['pointCustomer'] = DiemDanhGia2;
-                });    
-                
-                res.render('product/detail', {
-                    layoutModels: res.locals.layoutModels,
-                    product: aProducts,
+                        if (rowsName.Customer != null) {
+                            aProducts['nameCustomer'] = rowsName.Customer['HoTen'];
+                            DiemDanhGia2 = (rowsName.Customer['DiemDGDuong'] - rowsName.Customer['DiemDGAm'])/(rowsName.Customer['DiemDGDuong'] + rowsName.Customer['DiemDGAm']) * 100;
+                            DiemDanhGia2 = DiemDanhGia2.toFixed(1);
+                            aProducts['pointCustomer'] = DiemDanhGia2;
+                        } else {
+                            aProducts['nameCustomer'] = "Không có"; 
+                            aProducts['pointCustomer'] = "0";
+                        }
+
+                        res.render('product/detail', {
+                        layoutModels: res.locals.layoutModels,
+                            product: aProducts,
+                        });
                 });
-            } else {
-                res.redirect('/home');
-            }
         });
 });
 

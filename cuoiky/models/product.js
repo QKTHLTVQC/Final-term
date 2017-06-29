@@ -101,7 +101,11 @@ exports.loadNameCustomer = function(idLoaiDanhMuc) {
 
     var sql = mustache.render('select * from san_pham sp, khach_hang kh where kh.KhachHangId = sp.IdKHGiuGia and sp.IdLoaiDanhMuc = ' + idLoaiDanhMuc);
     db.load(sql).then(function(rows) {
-        deferred.resolve(rows);
+        if (rows) {
+            deferred.resolve(rows);
+        } else {
+            deferred.resolve(null);
+        }
     });
 
     return deferred.promise;
@@ -169,11 +173,33 @@ exports.loadName = function(idSanPham) {
     //Load top 5 sp gần kết thúc đấu giá
     
     Q.all(promises).spread(function(NameSellerRow, NameCustomerRow) {
-        var data = {
-            Seller: NameSellerRow[0],
-            Customer: NameCustomerRow[0]
+        if(!NameSellerRow == null) {
+            var data = {
+                Seller: null,
+                Customer: NameCustomerRow[0]
+            }
+            deferred.resolve(data);        
+        } else if(NameCustomerRow == null)
+        {
+            var data = {
+                Seller: NameSellerRow[0],
+                Customer: null
+            }
+            deferred.resolve(data);        
+        } else if (NameCustomerRow == null && NameSellerRow == null) {
+            var data = {
+                Seller: null,
+                Customer: null
+            }
+            deferred.resolve(data);  
+        } else {
+            var data = {
+                Seller: NameSellerRow[0],
+                Customer: NameCustomerRow[0]
+            }
+            deferred.resolve(data);  
         }
-        deferred.resolve(data);
+        
     });
     return deferred.promise;
 }

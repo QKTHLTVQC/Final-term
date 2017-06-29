@@ -31,7 +31,12 @@
                 </div>
                 <div class="rows-bids rows">Bids: <span class="bids rows">{{LuotRaGia}}</span></div>
                 <div class="rows-bid-price rows"><span class="last-bid-user rows">
-                    <span>Người giữ giá:&nbsp;</span><span class="txtRed">{{nameCustomer}}</span>
+                    <span>Người giữ giá:&nbsp;</span><span class="txtRed">
+                    {{#if nameCustomer}}
+                    {{nameCustomer}}
+                    {{else}}
+                    {{/if}}
+                    </span>
                 </div>
                 {{#if GiaMuaNgay}}
                 <div class="rows-bids rows">Giá mua ngay: <span class="bids rows">{{GiaMuaNgay}}đ</span></div>
