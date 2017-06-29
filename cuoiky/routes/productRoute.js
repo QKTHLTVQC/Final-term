@@ -34,10 +34,27 @@ productRoute.get('/byCat/:id', function(req, res) {
                     isActive: i === +curPage
                 });
             }
-
+            var aProducts= data.list;
+            for (var i = 0; i < data.list.length; i++)
+            {
+                product.loadNameCustomer(data.list[i]['IdLoaiDanhMuc'])
+                    .then(function(rowsName1) {
+                    for (var i = 0; i< rowsName1.length; i++) {
+                        aProducts[i]['nameCustomer'] = rowsName1[i]['HoTen'].slice(0,5) +"*****";
+                    }
+                }); 
+            }
+            if(data.list.length == 1) {
+                product.loadNameCustomer(data.list[0]['IdLoaiDanhMuc'])
+                    .then(function(rowsName1) {
+                    for (var i = 0; i< rowsName1.length; i++) {
+                        aProducts[0]['nameCustomer'] = rowsName1[0]['HoTen'].slice(0,5) +"*****";
+                    }
+                }); 
+            }
             res.render('product/byCat', {
                 layoutModels: res.locals.layoutModels,
-                products: data.list,
+                products: aProducts,
                 isEmpty: data.total === 0,
                 catId: req.params.id,
 

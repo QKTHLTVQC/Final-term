@@ -41,14 +41,44 @@ var homeRoute = express.Router();
 homeRoute.get('/', function(req, res) {
     product.loadHomePage()
         .then(function(rows) {
-        console.log(rows);
-        var ret = {
+        var ret = null;
+        var aProductsBid = rows.topBid;
+        var aProductsCost= rows.topCost;
+        var aProductsEndTime= rows.topEndTime;
+        for (var i = 0; i < rows.topBid.length; i++)
+        {
+	        product.loadNameCustomer(rows.topBid[i]['IdLoaiDanhMuc'])
+	        	.then(function(rowsName1) {
+		        for (var i = 0; i< rowsName1.length; i++) {
+		            aProductsBid[i]['nameCustomer'] = rowsName1[i]['HoTen'].slice(0,5) +"*****";
+		        }
+	        }); 
+    	}
+    	for (var i = 0; i < rows.topCost.length; i++)
+        {
+	        product.loadNameCustomer(rows.topCost[i]['IdLoaiDanhMuc'])
+	        	.then(function(rowsName1) {
+		        for (var i = 0; i< rowsName1.length; i++) {
+		            aProductsCost[i]['nameCustomer'] = rowsName1[i]['HoTen'].slice(0,5) +"*****";
+		        }
+	        }); 
+    	}
+    	for (var i = 0; i < rows.topCost.length; i++)
+        {
+	        product.loadNameCustomer(rows.topCost[i]['IdLoaiDanhMuc'])
+	        	.then(function(rowsName1) {
+		        for (var i = 0; i< rowsName1.length; i++) {
+		            aProductsEndTime[i]['nameCustomer'] = rowsName1[i]['HoTen'].slice(0,5) +"*****";
+		        }
+	        }); 
+    	}
+    	ret = {
             layoutModels: res.locals.layoutModels,
-            products: rows.topBid,
-            products2: rows.topCost,
-            products3: rows.topEndTime,
+            products: aProductsBid,
+            products2: aProductsCost,
+            products3: aProductsEndTime,
         }
-        res.render('home/index', ret);  
+    	res.render('home/index', ret);
     });
 });
 module.exports = homeRoute;

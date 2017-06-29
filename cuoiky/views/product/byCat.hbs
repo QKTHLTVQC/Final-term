@@ -1,7 +1,7 @@
 {{#section 'title'}}
     Danh sách sản phẩm
 {{/section}}
-
+ 
 {{#section 'js'}}
     <script type="text/javascript">
         $('.addItem').on('click', function () {
@@ -30,7 +30,7 @@
                 </div>
                 <div class="rows-bids rows">Bids: <span class="bids rows">{{LuotRaGia}}</span></div>
                 <div class="rows-bid-price rows"><span class="last-bid-user rows">
-                    <span>Người bán:&nbsp;</span><span class="txtRed">{{IdKHBan}}</span>
+                    <span>Người giữ giá:&nbsp;</span><span>{{nameCustomer}}</span>
                 </div>
                 {{#if GiaMuaNgay}}
                 <div class="rows-bids rows">Giá mua ngay: <span class="bids rows">{{GiaMuaNgay}}đ</span></div>
