@@ -9,7 +9,7 @@ exports.insert = function(entity) {
 
     var sql =
         mustache.render(
-            'insert into khach_hang (HoTen, DiaChi, Email, MatKhau, DiemDanhGia, LoaiKhachHang) values ("{{hoten}}", "{{diachi}}", "{{email}}", "{{matkhau}}", {{diemdanhgia}}, "{{loaikhachhang}}")',
+            'insert into khach_hang (HoTen, DiaChi, Email, MatKhau, LoaiKhachHang) values ("{{hoten}}", "{{diachi}}", "{{email}}", "{{matkhau}}", "{{loaikhachhang}}")',
             entity
         );
 
@@ -49,16 +49,141 @@ exports.login = function(entity) {
 
     db.load(sql).then(function(rows) {
         if (rows.length > 0) {
+            var DiemDanhGia = (rows[0].DiemDGDuong - rows[0].DiemDGAm)/(rows[0].DiemDGDuong + rows[0].DiemDGAm) * 100;
             var user = {
                 khachhangid: rows[0].KhachHangId,
                 matkhau: rows[0].MatKhau,
                 hoten: rows[0].HoTen,
                 diachi: rows[0].DiaChi,
                 email: rows[0].Email,
-                diemdanhgia: rows[0].DiemDanhGia,
+                diemdanhgia: DiemDanhGia,
                 loaikhachhang: rows[0].LoaiKhachHang
             }
             deferred.resolve(user);
+        } else {
+            deferred.resolve(null);
+        }
+    });
+
+    return deferred.promise;
+}
+
+exports.loadSameEmail = function(entity) {
+
+    var deferred = Q.defer();
+
+    var sql = mustache.render('select * from KHACH_HANG where Email = "{{email}}"',entity);
+    db.load(sql).then(function(rows) {
+        if (rows.length > 0) {
+            var email = rows[0].Email;
+            deferred.resolve(email);
+        } else {
+            deferred.resolve(null);
+        }
+    });
+
+    return deferred.promise;
+}
+
+exports.loadCustomerInfo = function(entity) {
+
+    var deferred = Q.defer();
+
+    var sql = mustache.render('select * from KHACH_HANG where KhachHangId = "{{khachhangid}}"',entity);
+    db.load(sql).then(function(rows) {
+        if (rows.length > 0) {
+            var DiemDanhGia = (rows[0].DiemDGDuong - rows[0].DiemDGAm)/(rows[0].DiemDGDuong + rows[0].DiemDGAm) * 100;
+            
+            var user = {
+                khachhangid: rows[0].KhachHangId,
+                matkhau: rows[0].MatKhau,
+                hoten: rows[0].HoTen,
+                diachi: rows[0].DiaChi,
+                email: rows[0].Email,
+                diemdanhgia: DiemDanhGia,
+                loaikhachhang: rows[0].LoaiKhachHang
+            };
+            deferred.resolve(user);
+        } else {
+            deferred.resolve(null);
+        }
+    });
+
+    return deferred.promise;
+}
+
+exports.ratingPlus = function(entity) {
+
+    var deferred = Q.defer();
+
+    var sql =
+        mustache.render(
+            'update khach_hang set DiemDGDuong=DiemDGDuong+1 where KhachHangId = {{nguoinhanid}}',
+            entity
+        );
+
+    var sqlInsert =
+        mustache.render(
+            'insert into BANG_DANH_GIA (NguoiDangId, NguoiNhanId, NoiDung) values ({{nguoidangid}}, {{nguoinhanid}}, "{{noidung}}", 1)',
+            entity
+        );
+
+    db.update(sql).then(function(user) {
+        deferred.resolve(user);
+    });
+    db.insert(sql).then(function(insertId) {
+        deferred.resolve(insertId);
+
+    });
+
+
+    return deferred.promise;
+}
+
+exports.ratingMinus = function(entity) {
+
+    var deferred = Q.defer();
+
+    var sql =
+        mustache.render(
+            'update khach_hang set DiemDGAm=DiemDGAm+1 where KhachHangId = {{nguoinhanid}}',
+            entity
+        );
+
+    var sqlInsert =
+        mustache.render(
+            'insert into BANG_DANH_GIA (NguoiDangId, NguoiNhanId, NoiDung) values ({{nguoidangid}}, {{nguoinhanid}}, "{{noidung}}", -1)',
+            entity
+        );
+    db.update(sql).then(function(user) {
+        deferred.resolve(user);
+    });
+    db.insert(sql).then(function(insertId) {
+        deferred.resolve(insertId);
+
+    });
+
+    return deferred.promise;
+}
+
+exports.loadRatedInfo = function(entity) {
+
+    var deferred = Q.defer();
+
+    var sql = mustache.render('select * from BANG_DANH_GIA where NguoiNhanId = {{userId}}',entity);
+    db.load(sql).then(function(rows) {
+        console.log("--------------"+rows+"-------------");
+        if (rows.length > 0) {
+            var arrRatings = [];
+            rows.forEach(function(item) {
+                var rating = {
+                    nguoidangid:item.NguoiDangId,
+                    noidung:item.NoiDung,
+                    diemdanhgia:item.DiemDanhGia
+                };
+                arrRatings.push(rating);
+            });
+            deferred.resolve(arrRatings);
         } else {
             deferred.resolve(null);
         }

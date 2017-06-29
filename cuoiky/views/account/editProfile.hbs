@@ -1,7 +1,50 @@
 {{#section 'title'}}
     Chỉnh sửa thông tin cá nhân
 {{/section}}
+{{#section 'js'}}
+    <script type="text/javascript">
+        $('#frmEditProfile').validate({
+            rules: {
+                hoten: {
+                    required: true
+                },
+                matkhaucu: {
+                    required: true,
+                    minlength: 6
+                },
+                matkhau: {
+                    required: true,
+                    minlength: 6
+                },
+                xacnhanmatkhau: {
+                    required: true,
+                    minlength: 6
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+            },
 
+            errorElement: 'span',
+            errorClass: 'help-block',
+
+            highlight: function (element) {
+                $(element)
+                    .closest('.form-group')
+                    .addClass('has-error');
+            },
+
+            success: function (label) {
+                $(label)
+                    .closest('.form-group')
+                    .removeClass('has-error');
+
+                label.remove();
+            },
+        });
+    </script>
+{{/section}}
 <form class="form-horizontal" method="post" action="" id="frmEditProfile">
 	<div class="form-group">
         <label class="col-sm-6 control-label" name="thongbao">{{thongbaoloi}}</label>

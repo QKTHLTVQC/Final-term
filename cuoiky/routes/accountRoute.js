@@ -75,39 +75,64 @@ accountRoute.get('/register', function(req, res) {
 });
 
 accountRoute.post('/register', function(req, res) {
-
-    var ePWD = crypto.createHash('md5').update(req.body.matkhau).digest('hex');
-    //var ePWD = req.body.matkhau;
-    //var nDOB = moment(req.body.dob, 'D/M/YYYY').format('YYYY-MM-DDTHH:mm');
-
     var entity = {
-        hoten: req.body.hoten,
-        diachi: req.body.diachi,
-        email: req.body.email,
-        matkhau: ePWD,
-        diemdanhgia: 100,
-        loaikhachhang: "Người mua"
+        email: req.body.email
     };
+    account.loadSameEmail(entity)
+        .then(function(rows) {
+            if (rows != null) {
+                res.render('account/register', {
+                    layoutModels: res.locals.layoutModels,
+                    showError: true,
+                    errorMsg: 'Email đã tồn tại'
+                    });
+            }
+            else
+            if(req.body.matkhau != req.body.cmatkhau) {
+                res.render('account/register', {
+                    layoutModels: res.locals.layoutModels,
+                    showError: true,
+                    errorMsg: 'Mật khẩu không trùng khớp'
+                    });
+            }
+            else {
+                var ePWD = crypto.createHash('md5').update(req.body.matkhau).digest('hex');
 
-    account.insert(entity)
-        .then(function(insertId) {
-            res.render('account/register', {
-                layoutModels: res.locals.layoutModels,
-                showError: true,
-                errorMsg: 'Đăng ký thành công.'
-            });
+                var entity = {
+                    hoten: req.body.hoten,
+                    diachi: req.body.diachi,
+                    email: req.body.email,
+                    matkhau: ePWD,
+                    loaikhachhang: "buy"
+                };
+
+                account.insert(entity)
+                    .then(function(insertId) {
+                        res.redirect('/account/login');
+                    });
+            }
         });
 });
 
 accountRoute.get('/profile', restrict, function(req, res) {
 
     if (req.session.isLogged === true) {
-        res.render('account/profile', {
-            user: req.session.user,
-            layoutModels: res.locals.layoutModels,
-            showError: true
-            //errorMsg: 'Đăng ký thành công.'
-        });
+        var entity = {
+            userId:req.session.user.khachhangid
+        };
+        account.loadRatedInfo(entity)
+            .then(function(arrRatings) {
+                //edit session
+                res.render('account/profile', {
+                    ratings: arrRatings,
+                    user: req.session.user,
+                    layoutModels: res.locals.layoutModels,
+                    showError: false
+                    //errorMsg: 'Đăng ký thành công.'
+                    });
+
+            });
+        
     } else {
         res.render('account/login', {
             layoutModels: res.locals.layoutModels,
@@ -165,13 +190,13 @@ accountRoute.post('/editProfile',function(req,res) {
             email: req.body.email,
             matkhau: ePWD
         };
+        //edit session
+        req.session.user.hoten = req.body.hoten;
+        req.session.user.email = req.body.email;
+        req.session.user.matkhau = req.body.ePWD;
 
         account.update(entity)
             .then(function(user) {
-                //edit session
-                req.session.user.hoten = req.body.hoten;
-                req.session.user.email = req.body.email;
-                req.session.user.matkhau = req.body.ePWD;
                 res.render('account/profile', {
                     user: req.session.user,
                     layoutModels: res.locals.layoutModels,
