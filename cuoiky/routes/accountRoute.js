@@ -118,8 +118,7 @@ accountRoute.get('/profile', restrict, function(req, res) {
 
     if (req.session.isLogged === true) {
         var entity = {
-            userId:req.session.user.khachhangid,
-            //logType:req.session.user.loaikhachhang
+            userId:req.session.user.khachhangid
         };
         account.loadRatedInfo(entity)
             .then(function(arrRatings) {
