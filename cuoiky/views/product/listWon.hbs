@@ -35,76 +35,12 @@
             <th class="text-center">
             Hình ảnh</th>
             <th class="text-center">
-            Người bán</th>
-            <th class="text-center">
             Giá</th>
             <th class="text-center">
             Thờigian</th>
-            <th class="text-center">
-            Thao tác</th>
+            <!-- <th class="text-center">
+            Thao tác</th> -->
         </tr>
-        <!-- <tr class="row-1">
-            <td align="center">
-            {{TenSanPham}}</td>
-            <td align="center" class="image">
-                <a href="#">
-                    <img src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" border="0" />
-                </a>
-            </td>
-            <td align="center">
-                <a href="#">
-                {{nameCustomer}}</a>
-            </td>
-            <td align="center">
-                <a href="#"">
-                {{GiaHienTai}}đ</a>
-            </td>
-            <td align="center">
-                <a title="Nhấp vào để xóa khỏi yêu thích" href="/search/RemoveLike/{{SanPhamId}}" id="removeLike{{SanPhamId}}" style="margin-left: 95px;" ><img src="/assests/images/garbage.png" border="0"></a>
-            </td>
-        </tr>
-        <script type="text/javascript">
-            var timeout = null; // Timeout
-            var today = new Date();
-            var curUnixTime = today.getTime();
-            var t = 0;
-            function timeOut(id, timeEnd) {
-                if (timeEnd-curUnixTime <= 0) {
-                     document.getElementById('time'+id).innerText = 'Hết giờ';
-                }
-            }
-            timeOut();
-            function time(id, timeEnd) {
-                var stop = 1;  
-                if (timeEnd-curUnixTime <= 0) {
-                    stop = 0;
-                }
-                t = timeEnd-curUnixTime;
-                var milliseconds = parseInt((t%1000)/100)
-                    , seconds = parseInt((t/1000)%60)
-                    , minutes = parseInt((t/(1000*60))%60)
-                    , hours = parseInt((t/(1000*60*60))%24);
-
-                hours = (hours < 10) ? "0" + hours : hours;
-                minutes = (minutes < 10) ? "0" + minutes : minutes;
-                seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-                // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
-                if (stop == 0) {
-                    document.getElementById('time'+id).innerText = 'Hết giờ';
-
-                } else {
-                    document.getElementById('time'+id).innerText = hours + ":" + minutes + ":" + seconds;
-                }
-                timeEnd = timeEnd - 1000;
-                timeout = setTimeout(function() {
-                    if (stop == 1) timeEnd;
-                        time(id, timeEnd);
-                }, 1000);
-            }
-            time({{SanPhamId}}, {{ThoiGianKetThuc}});
-        </script> -->
-        
         {{#each products }}
         <tr class="row-1">
             <td align="center">
@@ -116,15 +52,6 @@
                 </a>
             </td>
             <td align="center">
-            {{#if nameCustomer}}
-                <p>
-                {{nameCustomer}}</p>
-            {{else}}
-            <p>Không có</p>
-            {{/if}}
-
-            </td>
-            <td align="center">
                 <p>
                 {{GiaHienTai}}đ</p>
             </td>
@@ -132,9 +59,9 @@
                 <p id="time{{SanPhamId}}">
                 </p>
             </td>
-            <td class="text-center">
+            <!-- <td class="text-center">
                 <a title="Nhấp vào để xóa khỏi yêu thích" href="/search/RemoveLike/{{SanPhamId}}" id="removeLike{{SanPhamId}}" ><img src="/assests/images/garbage.png" border="0"></a>
-            </td>
+            </td> -->
         </tr>
         <script type="text/javascript">
             var timeout = null; // Timeout

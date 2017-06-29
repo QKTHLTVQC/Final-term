@@ -222,7 +222,7 @@
                                             }
                                         },
                                         error: function( jqXhr, textStatus, errorThrown ){
-                                            alert("chưa");
+                                            alert("Có lỗi");
                                         }
                                     })
                             });
@@ -291,24 +291,22 @@
                                </div>
                            </div>
                        </div>
+                       </div>
+                       <div class="text-center">
+                       <img class="bbCodeImg" src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" alt="" />
+                       <br />
+                       <br />
+                       <img class="bbCodeImg" src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_2.jpg" alt="" />
+                       <br />
+                       <br />
+                       <img class="bbCodeImg" src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_3.jpg" alt="" />
+                       <br />
+                       </div>
+                       </div>
                     </div>
 
     {{#if ../layoutModels.isLogged }}
-        <form class="form-horizontal" id="frmAddItem" method="post" action="/cart/add">
-            <div class="form-group">
-                <div class="col-sm-4">
-                    <input type="hidden" id="txtP" name="proId" value="{{ProID}}" />
-                    <div class="input-group" style="margin-left: 24px;">
-                        <input id="txtQ" name="quantity" type="text" class="form-control" placeholder="Slg" value="1">
-                        <span class="input-group-btn">
-                            <button class="btn btn-primary" type="submit">
-                                <i class="fa fa-cart-plus"></i>
-                            </button>
-                        </span>
-                    </div><!-- /input-group -->
-                </div>
-            </div>
-        </form>
+        
     {{/if}}
     <script type="text/javascript">
         var timeout = null; // Timeout

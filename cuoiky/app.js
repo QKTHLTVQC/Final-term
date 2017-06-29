@@ -24,6 +24,7 @@ var accountRoute = require('./routes/accountRoute');
 var cartRoute = require('./routes/cartRoute');
 var searchRoute = require('./routes/searchRoute');
 var sellerRoute = require('./routes/sellerRoute');
+var adminRoute = require('./routes/adminRoute');
 var app = express();
 
 //
@@ -110,6 +111,7 @@ app.use('/account', accountRoute);
 app.use('/cart', cartRoute);
 app.use('/search', searchRoute);
 app.use('/seller', sellerRoute);
+app.use('/admin', adminRoute);
 
 app.get('/', function(req, res) {
     res.end('Welcome to my homepage!');
