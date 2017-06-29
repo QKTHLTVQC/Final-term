@@ -31,6 +31,25 @@ exports.loadPageByCat = function(id, limit, offset) {
     return deferred.promise;
 }
 
+exports.update = function(entity) {
+
+    var deferred = Q.defer();
+
+    var sql =
+        mustache.render(
+            'update san_pham set ChiTietSanPham="{{ChiTietSanPham}}" where SanPhamId = {{sanphamid}}',
+            entity
+        );
+
+    db.update(sql).then(function(rows) {
+        deferred.resolve(rows);
+    });
+
+    return deferred.promise;
+}
+
+
+
 exports.loadAllByCat = function(id) {
 
     var deferred = Q.defer();
@@ -112,43 +131,34 @@ exports.loadNameCustomer = function(idLoaiDanhMuc) {
 }
 
 
-exports.loadNameSeller = function(idSanPham) {
+exports.loadProductsOfSeller = function(KhachHangId) {
 
     var deferred = Q.defer();
 
-    var sql = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHBan and SanPhamId = ' + idSanPham);
+    var sql = mustache.render('select * from san_pham sp where sp.IdKHBan =' +  KhachHangId);
     db.load(sql).then(function(rows) {
-        deferred.resolve(rows[0]);
+        deferred.resolve(rows);
     });
 
     return deferred.promise;
 }
 
-exports.loadNameSellerbyId = function(idSanPham) {
-
+exports.loadProfilePage = function(KhachHangId){
+    var today = new Date();
+    today = today.getTime();
     var deferred = Q.defer();
-
-    var sql = mustache.render('select * from san_pham, khach_hang where KhachHangId = IdKHGiuGia and SanPhamId = ' + idSanPham);
-    db.load(sql).then(function(rows) {
-        deferred.resolve(rows[0]);
-    });
-
-    return deferred.promise;
-}
-
-exports.loadNameCustomerbyId = function(idSP) {
-
-    var deferred = Q.defer();
-
-    var sql = mustache.render('select * from san_pham sp, khach_hang kh where sp.IdKHGiuGia = kh.KhachHangId  and sp.SanPhamId = ' + idSP);
-    db.load(sql).then(function(rows) {
-        if (rows) {
-            deferred.resolve(rows);
-        } else {
-            deferred.resolve(null);
+    var promises = [];
+    var sqlNonExpiredProduct = mustache.render('select * from san_pham sp where sp.ThoiGianKetThuc >  ' + today + '  and sp.IdKHBan =' +  KhachHangId);
+    promises.push(db.load(sqlNonExpiredProduct));
+    var sqlSoldProduct = mustache.render('select * from san_pham sp where sp.ThoiGianKetThuc <  ' + today + ' and IdKHGiuGia IS NOT NULL and sp.IdKHBan =' +  KhachHangId);
+    promises.push(db.load(sqlSoldProduct));
+    Q.all(promises).spread(function(NonExpiredRow, SoldRow) {
+        var data = {
+            NonExpired: NonExpiredRow,
+            SoldProduct:  SoldRow
         }
+        deferred.resolve(data);
     });
-
     return deferred.promise;
 }
 
@@ -444,81 +454,6 @@ exports.deleteLike = function(idKH, idSP) {
         );
     db.insert(sql).then(function(insertId) {
         deferred.resolve(insertId);
-    });
-
-    return deferred.promise;
-}
-
-exports.loadProductBid = function(id, limit, offset) {
-
-    var deferred = Q.defer();
-
-    var promises = [];
-
-    var view = {
-        id: id,
-        limit: limit,
-        offset: offset
-    };
-
-    var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "2" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
-    promises.push(db.load(sqlCount));
-
-    var sql = mustache.render('select * from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "2" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId limit {{limit}} offset {{offset}}', view);
-    promises.push(db.load(sql));
-
-    Q.all(promises).spread(function(totalRow, rows) {
-        var data = {
-            total: totalRow[0].total,
-            list: rows
-        }
-        deferred.resolve(data);
-    });
-
-    return deferred.promise;
-}
-
-exports.loadProductWon = function(id, limit, offset) {
-
-    var deferred = Q.defer();
-
-    var promises = [];
-
-    var view = {
-        id: id,
-        limit: limit,
-        offset: offset
-    };
-
-    var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "3" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
-    promises.push(db.load(sqlCount));
-
-    var sql = mustache.render('select * from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "3" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId limit {{limit}} offset {{offset}}', view);
-    promises.push(db.load(sql));
-
-    Q.all(promises).spread(function(totalRow, rows) {
-        var data = {
-            total: totalRow[0].total,
-            list: rows
-        }
-        deferred.resolve(data);
-    });
-
-    return deferred.promise;
-}
-
-exports.setMoney = function(entity) {
-
-    var deferred = Q.defer();
-
-    var sql =
-        mustache.render(
-            'update SAN_PHAM set GiaHienTai=GiaHienTai+BuocGia, LuotRaGia=LuotRaGia+1, IdKHGiuGia={{khachhangid}} where SanPhamId = {{sanphamid}}',
-            entity
-        );
-
-    db.update(sql).then(function(product) {
-        deferred.resolve(product);
     });
 
     return deferred.promise;

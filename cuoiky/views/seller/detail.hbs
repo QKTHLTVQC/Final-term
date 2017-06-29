@@ -1,0 +1,152 @@
+{{#section 'title'}}
+    Thông tin sản phẩm
+{{/section}}
+
+{{#section 'css'}}
+    <link href="/assets/bootstrap-datepicker/css/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <style type="text/css">
+        label {
+            font-weight: normal !important;
+        }
+    </style>
+{{/section}}
+
+{{#section 'js'}}
+    <script type="text/javascript">
+        $('#frmPost').validate({
+            rules: {
+                name: {
+                    required: true
+                },
+                img: {
+                    required: true,
+                },
+                img2: {
+                    required: true,
+                },
+                img3: {
+                    required: true,
+                },
+                startprice: {
+                    required: true
+                },
+                pricestep: {
+                    required: true
+                },
+                buyprice: {
+                    required: false
+                },
+                productcart: {required: false
+                },
+                timepost: {
+                    required: true
+                },
+                detal: {
+                    required: true
+                },
+                isAutoUpdate:{required: false
+
+                }
+            },
+
+            errorElement: 'span',
+            errorClass: 'help-block',
+
+            highlight: function (element) {
+                $(element)
+                    .closest('.form-group')
+                    .addClass('has-error');
+            },
+
+            success: function (label) {
+                $(label)
+                    .closest('.form-group')
+                    .removeClass('has-error');
+
+                label.remove();
+            },
+        });
+    </script>
+{{/section}}
+
+{{#if showError }}
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong> {{ errorMsg }} </strong>
+    </div>
+{{/if}}
+
+<span style="text-align: center; padding: 10px; text-transform: uppercase;"><h2>Thông tin sản phẩm</h2></span>
+
+<form class="form-horizontal" method="post" action="" id="frmPost" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="txtNameProduct" class="col-sm-2 control-label">Tên sản phẩm</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtNameProduct" placeholder="Tên sản phẩm" name="productname" value="{{product.TenSanPham}}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputImage" class="col-sm-2 control-label">Hình ảnh</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" name="img" value="{{product.HinhAnh}}" readonly>
+            <input type="text" class="form-control" name="img2" value="{{product.HinhAnh2}}" readonly>
+            <input type="text" class="form-control" name="img3" value="{{product.HinhAnh3}}" readonly>
+        </div>
+     </div>
+    <div class="form-group">
+        <label for="txtStartPrice" class="col-sm-2 control-label">Giá khởi điểm</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtStartPrice" placeholder="Giá khởi điểm" name="startprice" value="{{product.GiaHienTai}}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="disabledSelect" class="col-sm-2 control-label">Loại danh mục</label>
+        <div class="col-sm-4">
+            <select class="form-control" id="txtProductCart" name="productcart">
+                <option value="{{product.IdLoaiDanhMuc}}" disabled selected="true">{{product.IdLoaiDanhMuc}}</option>
+             </select>
+         </div>
+    </div>
+    <div class="form-group">
+        <label for="txtStep" class="col-sm-2 control-label">Bước giá</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtStep" placeholder="Bước giá" name="pricestep" value="{{product.BuocGia}}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtBuy" class="col-sm-2 control-label">Giá mua ngay</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtBuy" placeholder="Giá mua ngay" name="buyprice" value="{{product.GiaMuaNgay}}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtTimePost" class="col-sm-2 control-label">Ngày đăng</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="txtTimePost" name="timepost" value="{{product.ThoiGianBatDau}}" readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="txtDetail" class="col-sm-2 control-label">Mô tả</label>
+        <div class="col-sm-8">
+            <textarea name="detail"></textarea>
+        </div>
+    </div>
+    <div class="form-group">>
+        <label for="checkAutoUpdate" class="col-sm-4 control-label">
+          <input type="checkbox" name="isAutoUpdate" value="1" readonly> Tự động gia hạn
+        </label>
+        <div class="col-sm-4">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success" onclick="WriteDes()">
+            <i class="fa fa-check"></i>
+            Cập nhật
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+    CKEDITOR.replace( 'detail' );
+</script>

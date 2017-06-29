@@ -1,0 +1,112 @@
+{{#section 'title'}}
+    Danh sách sản phẩm đang bán
+{{/section}}
+ 
+
+{{#if isEmpty }}
+    Không có sản phẩm!
+{{else}}
+
+    <div class="row" style="margin-left: 5px;">
+        {{#each products }}
+            <div class="auction-item" id="auction-item-46617">
+                <div class="picture">
+                    <a href="/seller/listSellingProduct/{{SanPhamId}}"><img src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" border="0"></a>
+                </div>
+                <div class="title text-center">
+                    <a href="/seller/listSellingProduct/{{SanPhamId}}">{{TenSanPham}}</a>
+                </div>
+                <div class="rows-bids rows">Bids: <span class="bids rows">{{LuotRaGia}}</span></div>
+                <div class="rows-bid-price rows"><span class="last-bid-user rows">
+                    <span>Người giữ giá:&nbsp;</span><span>{{nameCustomer}}</span>
+                </div>
+                {{#if GiaMuaNgay}}
+                <div class="rows-bids rows">Giá mua ngay: <span class="bids rows">{{GiaMuaNgay}}đ</span></div>
+                {{else}}
+                <div class="rows-bids rows">Giá mua ngay: <span class="bids rows">Không có</span></div>
+                {{/if}}
+                <div class="server-time-rows">
+                    <table>
+                        <tbody><tr>
+                            <td class="glasshour"></td>
+                            <td id="time{{SanPhamId}}">23 : 44 : 42</td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <script type="text/javascript">
+                    var timeout = null; // Timeout
+                    var today = new Date();
+                    var curUnixTime = today.getTime();
+                    var t = 0;
+                    function timeOut(id, timeEnd) {
+                        if (timeEnd-curUnixTime <= 0) {
+                             document.getElementById('time'+id).innerText = 'Hết giờ';
+                        }
+                    }
+                    timeOut();
+                    function time(id, timeEnd) {
+                        var stop = 1;  
+                        if (timeEnd-curUnixTime <= 0) {
+                            stop = 0;
+                        }
+                        t = timeEnd-curUnixTime;
+                        var milliseconds = parseInt((t%1000)/100)
+                            , seconds = parseInt((t/1000)%60)
+                            , minutes = parseInt((t/(1000*60))%60)
+                            , hours = parseInt((t/(1000*60*60))%24);
+
+                        hours = (hours < 10) ? "0" + hours : hours;
+                        minutes = (minutes < 10) ? "0" + minutes : minutes;
+                        seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+                        // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
+                        if (stop == 0) {
+                            document.getElementById('time'+id).innerText = 'Hết giờ';
+
+                        } else {
+                            document.getElementById('time'+id).innerText = hours + ":" + minutes + ":" + seconds;
+                        }
+                        timeEnd = timeEnd - 1000;
+                        timeout = setTimeout(function() {
+                            if (stop == 1) timeEnd;
+                                time(id, timeEnd);
+                        }, 1000);
+                    }
+                    time({{SanPhamId}}, {{ThoiGianKetThuc}});
+                </script>
+                <div class="submit-btn rows">
+                    <input readonly="true" class="price" type="text" value="{{GiaHienTai}}đ"><br>
+                </div>
+            </div>                  
+            {{/each}}
+    </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {{#if showPrevPage}}
+                <li>
+                    <a href="?page={{prevPage}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {{/if}}
+            {{#each pages }}
+                {{#if isActive }}
+                    <li class="active">
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
+                    </li>
+                {{else}}
+                    <li>
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
+                    </li>
+                {{/if}}
+            {{/each}}
+            {{#if showNextPage }}
+                <li>
+                    <a href="?page={{nextPage}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {{/if}}
+        </ul>
+    </nav>
+{{/if}}
