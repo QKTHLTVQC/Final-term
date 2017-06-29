@@ -154,6 +154,7 @@
     <div id="auction-detail">
                         <div id="auction-detail-inner">
                         <div class="title">{{TenSanPham}}</div>
+
                         <div class="auction-images">
                         <img src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" border="0" />
                         </div>
@@ -161,6 +162,9 @@
                         <table id="tbl-auction-item" style="margin-left: 10px;">
                         <tr>
                         <td style="vertical-align:top">
+                        {{#if ../layoutModels.isLogged }}
+                        <a title="Thêm vào yêu thích" href="#" id="addLike{{SanPhamId}}" style="margin-left: 50px;" ><img src="/assests/images/star.png" border="0"></a>
+                        {{/if}}
                         <div class="start-time-rows" class="show-mobile">
                         Giá hiện tại: <strong>
                         {{GiaHienTai}}đ</strong>
@@ -201,6 +205,28 @@
                         <div class="start-time-rows">
                         Kết thúc: <span id="endTime">
                         </span>
+                        
+                        <script type="text/javascript">
+                            $("#addLike{{SanPhamId}}").click(function(){
+                                $.ajax({
+                                        url: '/search/ajax',
+                                        type: 'POST',
+                                        data: {
+                                            id: {{SanPhamId}},
+                                        },
+                                        success: function( data, textStatus, jQxhr ){
+                                            if(data == "success") {
+                                                alert("Thêm thành công");
+                                            } else {
+                                                alert("Sản phẩm này đã tồn tại trong yêu thích");
+                                            }
+                                        },
+                                        error: function( jqXhr, textStatus, errorThrown ){
+                                            alert("chưa");
+                                        }
+                                    })
+                            });
+                        </script>
                         </div>
                         <div class="last-bid-user rows">
                         &nbsp;</div>

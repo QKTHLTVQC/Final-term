@@ -97,6 +97,28 @@
                 <div class="submit-btn rows">
                     <input readonly="true" class="price" type="text" value="{{GiaHienTai}}đ"><br>
                 </div>
+                <a title="Nhấp vào để xóa khỏi yêu thích" href="/search/RemoveLike/{{SanPhamId}}" id="removeLike{{SanPhamId}}" style="margin-left: 95px;" ><img src="/assests/images/star.png" border="0"></a>
+                <script type="text/javascript">
+                            $("#removeLikee{{SanPhamId}}").click(function(){
+                                $.ajax({
+                                        url: '/search/ajaxRemove',
+                                        type: 'POST',
+                                        data: {
+                                            id: {{SanPhamId}},
+                                        },
+                                        success: function( data, textStatus, jQxhr ){
+                                            if(data == "success") {
+                                                alert("Xóa thành công");
+                                            } else {
+                                                alert("Có lỗi xảy ra");
+                                            }
+                                        },
+                                        error: function( jqXhr, textStatus, errorThrown ){
+                                            alert("chưa");
+                                        }
+                                    })
+                            });
+                        </script>
             </div>                  
             {{/each}}
     </div>

@@ -374,3 +374,61 @@ exports.searchProductLike = function(id, nameProduct, limit, offset) {
    }
     return deferred.promise;
 }
+
+exports.getProductLike = function(idKH, idSP) {
+
+    var deferred = Q.defer();
+
+    var promises = [];
+
+    var view = {
+        idKH: idKH,
+        idSP: idSP
+    };
+    var sqlCount = mustache.render('select count(*) as total from ds_san_pham where LoaiDSSP = "1" and KhachHangId = {{idKH}} and SanPhamId = {{idSP}}', view);
+    promises.push(db.load(sqlCount));
+
+    Q.all(promises).spread(function(totalRow) {
+        var data = {
+            total: totalRow[0].total,
+        }
+        deferred.resolve(data);
+    });
+    return deferred.promise;
+}
+
+exports.insertLike = function(idKH, idSP) {
+    var deferred = Q.defer();
+    var view = {
+        idKH: idKH,
+        idSP: idSP
+    };
+    var sql =
+        mustache.render(
+            'insert into ds_san_pham (KhachHangId, SanPhamId, LoaiDSSP) values ("{{idKH}}", {{idSP}}, "1")',
+            view
+        );
+    db.insert(sql).then(function(insertId) {
+        deferred.resolve(insertId);
+    });
+
+    return deferred.promise;
+}
+
+exports.deleteLike = function(idKH, idSP) {
+    var deferred = Q.defer();
+    var view = {
+        idKH: idKH,
+        idSP: idSP
+    };
+    var sql =
+        mustache.render(
+            'DELETE FROM ds_san_pham WHERE LoaiDSSP = "1" and KhachHangId = {{idKH}} and SanPhamId = {{idSP}}',
+            view
+        );
+    db.insert(sql).then(function(insertId) {
+        deferred.resolve(insertId);
+    });
+
+    return deferred.promise;
+}

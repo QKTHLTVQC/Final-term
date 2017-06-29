@@ -93,9 +93,35 @@
                     }
                     time({{SanPhamId}}, {{ThoiGianKetThuc}}, namePro, {{ThoiGianBatDau}});
                 </script>
+                {{#if ../layoutModels.isLogged }}
+                <a title="Thêm vào yêu thích" href="#" id="addLike{{SanPhamId}}" style="margin-left: 100px;"><img src="/assests/images/star.png" border="0"></a>
+                {{/if}}
+                <script type="text/javascript">
+                    $("#addLike{{SanPhamId}}").click(function(){
+                        $.ajax({
+                                url: '/search/ajax',
+                                type: 'POST',
+                                data: {
+                                    id: {{SanPhamId}},
+                                },
+                                success: function( data, textStatus, jQxhr ){
+                                    if(data == "success") {
+                                        alert("Thêm thành công");
+                                    } else {
+                                        alert("Sản phẩm này đã tồn tại trong yêu thích");
+                                    }
+                                },
+                                error: function( jqXhr, textStatus, errorThrown ){
+                                    alert("chưa");
+                                }
+                            })
+                    });
+                </script>
+                {{#if ../layoutModels.isLogged }}
                 <div class="submit-btn rows">
                     <input readonly="true" class="price" type="text" value="{{GiaHienTai}}đ"><br>
                 </div>
+                {{/if}}
             </div>                  
             {{/each}}
     </div>
@@ -129,3 +155,4 @@
         </ul>
     </nav>
 {{/if}}
+
