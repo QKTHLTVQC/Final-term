@@ -195,16 +195,12 @@
                         </div>
                         </div>
                         <div class="start-time-rows">
-                        Bắt đầu: <span>
-                        29/05/2017</span>
-                         lúc <span>
-                         12:00</span>
+                        Bắt đầu: <span id="startTime">
+                        </span>
                         </div>
                         <div class="start-time-rows">
-                        Kết thúc: <span>
-                        30/05/2017</span>
-                         lúc <span>
-                         11:00</span>
+                        Kết thúc: <span id="endTime">
+                        </span>
                         </div>
                         <div class="last-bid-user rows">
                         &nbsp;</div>
@@ -302,7 +298,39 @@
             </div>
         </form>
     {{/if}}
+    <script type="text/javascript">
+        var timeout = null; // Timeout
+        var today = new Date();
+        var curUnixTime = today.getTime();
+        var t = 0;
+        function timeConverter(UNIX_timestamp){
+            var a = new Date(UNIX_timestamp);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var year = a.getFullYear();
+            var month = months[a.getMonth()];
+            var date = a.getDate();
+            var hour = a.getHours();
+            var min = a.getMinutes();
+            var sec = a.getSeconds();
+            var time = date + '/' + month + '/' + year + ' lúc ' + hour + ':' + min + ':' + sec ;
+            document.getElementById('startTime').innerText = time;
+        }
+        timeConverter({{ThoiGianBatDau}});
+        function timeConverter2(UNIX_timestamp){
+            var a = new Date(UNIX_timestamp);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var year = a.getFullYear();
+            var month = months[a.getMonth()];
+            var date = a.getDate();
+            var hour = a.getHours();
+            var min = a.getMinutes();
+            var sec = a.getSeconds();
+            var time = date + '/' + month + '/' + year + ' lúc ' + hour + ':' + min + ':' + sec ;
+            document.getElementById('endTime').innerText = time;
+        }
+        timeConverter2({{ThoiGianKetThuc}});
 
+    </script>
     <script type="text/javascript">
         function stringToHTML(){
             var str = "{{ChiTietSanPham}}";

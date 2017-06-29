@@ -297,27 +297,81 @@ exports.searchProduct = function(nameProduct, idLoaiDanhMuc, limit, offset, sort
         //     deferred.resolve(rows);
         // });
     }
+
     
 
     return deferred.promise;
 }
-// exports.makeCartItem = function(id, q) {
+exports.loadProductLike = function(id, limit, offset) {
 
-//     var deferred = Q.defer();
+    var deferred = Q.defer();
 
-//     var sql = 'select * from products where ProID = ' + id;
-//     db.load(sql).then(function(rows) {
-//         if (rows) {
-//             var ret = {
-//                 Product: rows[0],
-//                 Quantity: q,
-//                 Amount: rows[0].Price * q
-//             }
-//             deferred.resolve(ret);
-//         } else {
-//             deferred.resolve(null);
-//         }
-//     });
+    var promises = [];
 
-//     return deferred.promise;
-// }
+    var view = {
+        id: id,
+        limit: limit,
+        offset: offset
+    };
+
+    var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
+    promises.push(db.load(sqlCount));
+
+    var sql = mustache.render('select * from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId limit {{limit}} offset {{offset}}', view);
+    promises.push(db.load(sql));
+
+    Q.all(promises).spread(function(totalRow, rows) {
+        var data = {
+            total: totalRow[0].total,
+            list: rows
+        }
+        deferred.resolve(data);
+    });
+
+    return deferred.promise;
+}
+
+exports.searchProductLike = function(id, nameProduct, limit, offset) {
+
+    var deferred = Q.defer();
+
+    var promises = [];
+
+    var view = {
+        id: id,
+        nameProduct: nameProduct,
+        limit: limit,
+        offset: offset
+    };
+    return deferred.promise;
+    if (nameProduct == "") {
+        var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
+        promises.push(db.load(sqlCount));
+
+        var sql = mustache.render('select * from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId limit {{limit}} offset {{offset}}', view);
+        promises.push(db.load(sql));
+
+        Q.all(promises).spread(function(totalRow, rows) {
+            var data = {
+                total: totalRow[0].total,
+                list: rows
+            }
+            deferred.resolve(data);
+        });
+    } else {
+        var sqlCount = mustache.render('select count(*) as total from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId', view);
+        promises.push(db.load(sqlCount));
+
+        var sql = mustache.render('select * from ds_san_pham ds, san_pham sp where ds.LoaiDSSP = "1" and ds.KhachHangId = {{id}} and sp.SanPhamId = ds.SanPhamId limit {{limit}} offset {{offset}}', view);
+        promises.push(db.load(sql));
+
+        Q.all(promises).spread(function(totalRow, rows) {
+            var data = {
+                total: totalRow[0].total,
+                list: rows
+            }
+            deferred.resolve(data);
+        });
+   }
+    return deferred.promise;
+}

@@ -108,12 +108,13 @@ searchRoute.get('/', function(req, res) {
         var aCusName = rows.customerName;
         if (aCusName.length != 0) {
             for (var i = 0; i< aProducts.length; i++) {
-                aProducts[i]['nameCustomer'] = aCusName[i]['HoTen'].slice(0,5) +"*****";
-            }
-        } else {
-            aProducts[i]['nameCustomer'] = "Không có";
+                if(aCusName[i]['HoTen'] != null) {
+                    aProducts[i]['nameCustomer'] = aCusName[i]['HoTen'].slice(0,5) +"*****";
+                } else {
+                    aProducts[i]['nameCustomer'] = "Không có";
+                }
+            } 
         }
-        //aProducts[0]['name'] = "123";
         var ret = {
             layoutModels: res.locals.layoutModels,
             products: aProducts,

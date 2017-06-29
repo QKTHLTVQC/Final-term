@@ -1,7 +1,7 @@
 {{#section 'title'}}
-    Danh sách tìm kiếm
+    Danh sách yêu thích
 {{/section}}
-
+ 
 {{#section 'js'}}
     <script type="text/javascript">
         $('.addItem').on('click', function () {
@@ -15,28 +15,26 @@
 {{#if isEmpty }}
     Không có sản phẩm!
 {{else}}
-    <div>
-        <span>Sắp xếp:&nbsp;</span><a class="btn btn-primary" href="?selectDanhMuc={{catId}}&txtKeyword={{proName}}&page={{pageValue}}&sort=1">Thời gian kết thúc tăng dần</a>
-        <a class="btn btn-info" href="?selectDanhMuc={{catId}}&txtKeyword={{proName}}&page={{pageValue}}&sort=2">Giá giảm dần</a>
-    </div>
-    <div class="row" style="margin-left: 5px; margin-top: 10px;">
+    <form id="frmAddToCart" method="post" action="/cart/add1">
+        <input type="hidden" id="txtP" name="proId" />
+        <input type="hidden" id="txtC" name="catId" value="{{catId}}" />
+    </form>
+    <form style="margin-left: 5px;margin-top: 10px;" action="/product/search" method="get">
+        <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
+        <input type="submit" value="Tìm kiếm">
+    </form>
+    <div class="row" style="margin-left: 5px;margin-top: 10px;">
         {{#each products }}
             <div class="auction-item" id="auction-item-46617">
                 <div class="picture">
                     <a href="/product/detail/{{SanPhamId}}"><img src="/assests/product/{{SanPhamId}}/{{SanPhamId}}_1.jpg" border="0"></a>
                 </div>
                 <div class="title text-center">
-                    <p type="hidden" id="namePro{{SanPhamId}}" value="{{TenSanPham}}"></p>
-                    <a id='tenSP{{SanPhamId}}' href="/product/detail/{{SanPhamId}}">{{TenSanPham}}</a>
+                    <a href="/product/detail/{{SanPhamId}}">{{TenSanPham}}</a>
                 </div>
                 <div class="rows-bids rows">Bids: <span class="bids rows">{{LuotRaGia}}</span></div>
                 <div class="rows-bid-price rows"><span class="last-bid-user rows">
-                    <span>Người giữ giá:&nbsp;</span><span class="txtRed">
-                    {{#if nameCustomer}}
-                    {{nameCustomer}}
-                    {{else}}
-                    {{/if}}
-                    </span>
+                    <span>Người giữ giá:&nbsp;</span><span>{{nameCustomer}}</span>
                 </div>
                 {{#if GiaMuaNgay}}
                 <div class="rows-bids rows">Giá mua ngay: <span class="bids rows">{{GiaMuaNgay}}đ</span></div>
@@ -53,20 +51,21 @@
                 </div>
                 <script type="text/javascript">
                     var timeout = null; // Timeout
-                    
                     var today = new Date();
                     var curUnixTime = today.getTime();
                     var t = 0;
-                    var namePro = "{{TenSanPham}}"
-                    function time(id, timeEnd, name, timeStart) { 
-                        //1498683226137
-                        
-                        var stop = 1;
-                        t = timeEnd-curUnixTime;
-                        if (t <= 0) {
+                    function timeOut(id, timeEnd) {
+                        if (timeEnd-curUnixTime <= 0) {
+                             document.getElementById('time'+id).innerText = 'Hết giờ';
+                        }
+                    }
+                    timeOut();
+                    function time(id, timeEnd) {
+                        var stop = 1;  
+                        if (timeEnd-curUnixTime <= 0) {
                             stop = 0;
                         }
-                       
+                        t = timeEnd-curUnixTime;
                         var milliseconds = parseInt((t%1000)/100)
                             , seconds = parseInt((t/1000)%60)
                             , minutes = parseInt((t/(1000*60))%60)
@@ -75,23 +74,21 @@
                         hours = (hours < 10) ? "0" + hours : hours;
                         minutes = (minutes < 10) ? "0" + minutes : minutes;
                         seconds = (seconds < 10) ? "0" + seconds : seconds;
-                        var isNew = curUnixTime - timeStart;
-                        if (parseInt((isNew/(1000*60))) >= 0 && parseInt((isNew/(1000*60))) <= 60) {
-                            document.getElementById('tenSP'+id).innerText = name + ' (New)';
-                        }
+
                         // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
                         if (stop == 0) {
                             document.getElementById('time'+id).innerText = 'Hết giờ';
+
                         } else {
                             document.getElementById('time'+id).innerText = hours + ":" + minutes + ":" + seconds;
                         }
                         timeEnd = timeEnd - 1000;
                         timeout = setTimeout(function() {
                             if (stop == 1) timeEnd;
-                                time(id, timeEnd, name, timeStart);
+                                time(id, timeEnd);
                         }, 1000);
                     }
-                    time({{SanPhamId}}, {{ThoiGianKetThuc}}, namePro, {{ThoiGianBatDau}});
+                    time({{SanPhamId}}, {{ThoiGianKetThuc}});
                 </script>
                 <div class="submit-btn rows">
                     <input readonly="true" class="price" type="text" value="{{GiaHienTai}}đ"><br>
@@ -103,7 +100,7 @@
         <ul class="pagination">
             {{#if showPrevPage}}
                 <li>
-                    <a href="?selectDanhMuc={{catId}}&txtKeyword={{proName}}&page={{prevPage}}&sort={{sort}}" aria-label="Previous">
+                    <a href="?page={{prevPage}}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -111,17 +108,17 @@
             {{#each pages }}
                 {{#if isActive }}
                     <li class="active">
-                        <a href="?selectDanhMuc={{catId}}&txtKeyword={{proName}}&page={{pageValue}}&sort={{sort}}">{{pageValue}}</a>
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
                     </li>
                 {{else}}
                     <li>
-                        <a href="?selectDanhMuc={{catId}}&txtKeyword={{proName}}&page={{pageValue}}&sort={{sort}}">{{pageValue}}</a>
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
                     </li>
                 {{/if}}
             {{/each}}
             {{#if showNextPage }}
                 <li>
-                    <a href="?selectDanhMuc={{catId}}&txtKeyword={{proName}}&page={{nextPage}}&sort={{sort}}" aria-label="Next">
+                    <a href="?page={{nextPage}}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
