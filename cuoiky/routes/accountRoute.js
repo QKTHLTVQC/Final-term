@@ -42,6 +42,13 @@ accountRoute.post('/login', function(req, res) {
                 req.session.isLogged = true;
                 req.session.user = user;
                 req.session.cart = [];
+                console.log(user.loaikhachhang);
+                if(user.loaikhachhang == "sell") {
+                    req.session.isSeller = true;
+                }
+                else if(user.loaikhachhang == "admin") {
+                    req.session.isAdmin = true;
+                }
 
                 if (remember === true) {
                     var hour = 1000 * 60 * 60 * 24;
@@ -60,6 +67,8 @@ accountRoute.post('/login', function(req, res) {
 
 accountRoute.get('/logout', restrict, function(req, res) {
     req.session.isLogged = false;
+    req.session.isSeller = false;
+    req.session.isAdmin = false;
     req.session.user = null;
     req.session.cart = null;
     req.session.cookie.expires = new Date(Date.now() - 1000);

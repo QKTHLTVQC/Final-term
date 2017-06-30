@@ -569,3 +569,19 @@ exports.loadProfilePage = function(KhachHangId){
     });
     return deferred.promise;
 }
+
+exports.addHistory = function(entity) {
+
+    var deferred = Q.defer();
+    var sql =
+        mustache.render(
+            'insert into lich_su_dau_gia (NguoiDauGiaId, SoTien, ThoiGianDauGia, SanPhamId) values ({{khachhangid}}, {{sotien}}, {{thoigiandaugia}}, {{sanphamid}})',
+            entity
+        );
+
+    db.insert(sql).then(function(historyId) {
+        deferred.resolve(historyId);
+    });
+
+    return deferred.promise;
+}

@@ -79,7 +79,8 @@
         </div>
     </div>
 </form>
-
+{{#if layoutModels.isSeller}}
+{{else}}
 <form class="form-horizontal" style="display: inline;" method="post" action="" id="frmSellRequest">
     <div>
         <button style="width:22%;margin-left: 31%;" type="submit" class="btn btn-success" name="btnSellRequest">
@@ -88,3 +89,4 @@
         </button>
     </div>
 </form>
+{{/if}}

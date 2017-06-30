@@ -387,7 +387,7 @@ productRoute.post('/userDetail/:id/like', function(req, res, next) {
                         });
             }
             res.redirect('/home');
-            });
+        });
 });
 
 productRoute.post('/userDetail/:id/dislike', function(req, res, next) {
@@ -416,6 +416,7 @@ productRoute.post('/userDetail/:id/dislike', function(req, res, next) {
 productRoute.post('/setMoney/:id/:giadecu',function(req,res) {
     var SPid = req.params.id;
     var GiaDeCu = req.params.giadecu;
+    var intDate = new Date().getTime();
     if(req.session.user.diemdanhgia <= 80) {
         console.log("diemdanhgia <= 80");
     }
@@ -428,8 +429,25 @@ productRoute.post('/setMoney/:id/:giadecu',function(req,res) {
         var entity = {
             khachhangid:req.session.user.khachhangid,
             sanphamid:SPid,
-            loaidssp:2
+            loaidssp:2,
+            sotien:req.body.tiendatcuoc,
+            thoigiandaugia:intDate
         };
+
+        //them vao ls dau gia
+        console.log(req.session.user.khachhangid+"   "+SPid+"   "+req.body.tiendatcuoc+"   "+intDate);
+        product.addHistory(entity)
+            .then(function(historyId) {
+                if(historyId != null) {
+                    console.log("Them thanh cong!");
+                }
+                else {
+
+                    console.log("Them that bai!");
+                }
+            });
+
+        //ra gia
         product.setMoney(entity)
             .then(function(productId) {
                 product.loadDetail(productId)
@@ -460,6 +478,8 @@ productRoute.post('/setMoney/:id/:giadecu',function(req,res) {
                                         });
                                     }
                                 });
+
+                        
 
                 res.redirect('/home');
 
