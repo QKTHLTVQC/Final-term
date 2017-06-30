@@ -585,3 +585,74 @@ exports.addHistory = function(entity) {
 
     return deferred.promise;
 }
+exports.loadProductAuctioning = function(idNguoiBan, limit, offset) {
+    var deferred = Q.defer();
+    var promises = [];
+    var today = new Date();
+    today = today.getTime();
+    console.log(today);
+    var view = {
+        idNguoiBan: idNguoiBan,
+        limit: limit,
+        offset: offset
+    };
+
+    var sqlCount = mustache.render('select count(*) as total from san_pham sp where sp.ThoiGianKetThuc >  ' + today + ' and sp.IdKHBan = {{idNguoiBan}}', view);
+    promises.push(db.load(sqlCount));
+
+    var sql = mustache.render('select * from san_pham sp where sp.ThoiGianKetThuc >  ' + today + ' and sp.IdKHBan = {{idNguoiBan}} ' + ' limit {{limit}} offset {{offset}}', view);
+    promises.push(db.load(sql));
+
+    Q.all(promises).spread(function(totalRow, rows) {
+        var data = {
+            total: totalRow[0].total,
+            list: rows
+        }
+        deferred.resolve(data);
+    });
+
+    return deferred.promise;
+}
+
+exports.loadProductSelled = function(idNguoiBan, limit, offset) {
+    var deferred = Q.defer();
+    var promises = [];
+    var today = new Date();
+    today = today.getTime();
+    var view = {
+        idNguoiBan: idNguoiBan,
+        limit: limit,
+        offset: offset
+    };
+
+    var sqlCount = mustache.render('select count(*) as total from san_pham sp where sp.ThoiGianKetThuc <  ' + today + ' and sp.IdKHGiuGia IS NOT NULL   and sp.IdKHBan = {{idNguoiBan}}', view);
+    promises.push(db.load(sqlCount));
+
+    var sql = mustache.render('select * from san_pham sp where sp.ThoiGianKetThuc <  ' + today + ' and sp.IdKHGiuGia IS NOT NULL   and sp.IdKHBan = {{idNguoiBan}} ' + ' limit {{limit}} offset {{offset}}', view);
+    promises.push(db.load(sql));
+
+    Q.all(promises).spread(function(totalRow, rows) {
+        var data = {
+            total: totalRow[0].total,
+            list: rows
+        }
+        deferred.resolve(data);
+    });
+
+    return deferred.promise;
+}
+
+exports.loadNameUserById = function(id) {
+
+    var deferred = Q.defer();
+    var view = {
+        id: id
+    };
+
+    var sql = mustache.render('select * from khach_hang where KhachHangId = {{id}}', view);
+    db.load(sql).then(function(rows) {
+        deferred.resolve(rows);
+    });
+
+    return deferred.promise;
+}
