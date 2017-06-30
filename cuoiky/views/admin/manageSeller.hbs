@@ -1,32 +1,14 @@
 {{#section 'title'}}
     Danh sách yêu cầu quyền bán
 {{/section}}
- 
-{{#section 'js'}}
-    <script type="text/javascript">
-        $('.addItem').on('click', function () {
-            var proId = $(this).data('id');
-            $('#txtP').val(proId);
-            $('#frmAddToCart').submit();
-        });
-    </script>
-{{/section}}
 
 {{#if isEmpty }}
     <form style="margin-left: 5px;margin-top: 10px;" action="/product/searchLike" method="get">
         <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
         <input type="submit" value="Tìm kiếm">
     </form>
-    Không có sản phẩm!
+    Không có yêu cầu!
 {{else}}
-    <form id="frmAddToCart" method="post" action="/cart/add1">
-        <input type="hidden" id="txtP" name="proId" />
-        <input type="hidden" id="txtC" name="catId" value="{{catId}}" />
-    </form>
-    <form style="margin-left: 5px;margin-top: 10px;" action="/product/searchLike" method="get">
-        <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
-        <input type="submit" value="Tìm kiếm">
-    </form>
     <div class="row" style="margin-left: 5px;margin-top: 10px;">
         <table class="auction-items" style="background-color:#fff">
         <tr>
@@ -44,55 +26,30 @@
             </td>
             <td align="center">
                 {{Email}}
-            </td
-            <td align="center" id="thogianxin+{{KhachHangId}}">
+            </td>
+
+            <td align="center" id="thogianxin{{IdNguoiMua}}">
 
             </td>
+            <script type="text/javascript">
+                function timeConverter(UNIX_timestamp){
+                        var a = new Date(UNIX_timestamp);
+                        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                        var year = a.getFullYear();
+                        var month = months[a.getMonth()];
+                        var date = a.getDate();
+                        var hour = a.getHours();
+                        var min = a.getMinutes();
+                        var sec = a.getSeconds();
+                        var time = date + '/' + month + '/' + year + ' lúc ' + hour + ':' + min + ':' + sec ;
+                        document.getElementById('thogianxin{{KhachHangId}}').innerText = time;
+                    }
+                    timeConverter({{ThoiGianXin}});
+            </script>
             <td class="text-center">
-                <a title="Nhấp vào để chấp nhận yêu cầu" href="/search/RemoveLike/{{SanPhamId}}" id="removeLike{{SanPhamId}}" ><img src="/assests/images/garbage.png" border="0"></a>
+                <a title="Nhấp vào để chấp nhận yêu cầu" href="/admin/acceptSeller/{{IdNguoiMua}}" id="{{IdNguoiMua}}" ><img src="/assests/images/check.png" border="0"></a>
             </td>
         </tr>
-        <script type="text/javascript">
-            var timeout = null; // Timeout
-            var today = new Date();
-            var curUnixTime = today.getTime();
-            var t = 0;
-            function timeOut(id, timeEnd) {
-                if (timeEnd-curUnixTime <= 0) {
-                     document.getElementById('time'+id).innerText = 'Hết giờ';
-                }
-            }
-            timeOut();
-            function time(id, timeEnd) {
-                var stop = 1;  
-                if (timeEnd-curUnixTime <= 0) {
-                    stop = 0;
-                }
-                t = timeEnd-curUnixTime;
-                var milliseconds = parseInt((t%1000)/100)
-                    , seconds = parseInt((t/1000)%60)
-                    , minutes = parseInt((t/(1000*60))%60)
-                    , hours = parseInt((t/(1000*60*60))%24);
-
-                hours = (hours < 10) ? "0" + hours : hours;
-                minutes = (minutes < 10) ? "0" + minutes : minutes;
-                seconds = (seconds < 10) ? "0" + seconds : seconds;
-
-                // return hours + ":" + minutes + ":" + seconds + "." + milliseconds;
-                if (stop == 0) {
-                    document.getElementById('time'+id).innerText = 'Hết giờ';
-
-                } else {
-                    document.getElementById('time'+id).innerText = hours + ":" + minutes + ":" + seconds;
-                }
-                timeEnd = timeEnd - 1000;
-                timeout = setTimeout(function() {
-                    if (stop == 1) timeEnd;
-                        time(id, timeEnd);
-                }, 1000);
-            }
-            time({{SanPhamId}}, {{ThoiGianKetThuc}});
-        </script>        
         {{/each}}
         </table>
     </div>
@@ -126,18 +83,3 @@
         </ul>
     </nav>
 {{/if}}
-<script type="text/javascript">
-    function timeConverter(UNIX_timestamp){
-            var a = new Date(UNIX_timestamp);
-            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-            var year = a.getFullYear();
-            var month = months[a.getMonth()];
-            var date = a.getDate();
-            var hour = a.getHours();
-            var min = a.getMinutes();
-            var sec = a.getSeconds();
-            var time = date + '/' + month + '/' + year + ' lúc ' + hour + ':' + min + ':' + sec ;
-            document.getElementById('thogianxin+{{KhachHangId}}').innerText = time;
-        }
-        timeConverter({{ThoiGianXin}});
-</script>

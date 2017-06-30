@@ -3,6 +3,8 @@ var mustache = require('mustache');
 
 var db = require('../app-helpers/dbHelper');
 
+
+
 exports.insert = function(entity) {
 
     var deferred = Q.defer();

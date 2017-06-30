@@ -1,4 +1,5 @@
 var Q = require('q');
+var mustache = require('mustache');
 var db = require('../app-helpers/dbHelper');
 
 exports.loadAll = function() {

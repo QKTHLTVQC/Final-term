@@ -1,0 +1,90 @@
+{{#section 'title'}}
+    Danh sách người dùng
+{{/section}}
+
+{{#if isEmpty }}
+    <form style="margin-left: 5px;margin-top: 10px;" action="/product/searchLike" method="get">
+        <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
+        <input type="submit" value="Tìm kiếm">
+    </form>
+    Không có người dùng!
+{{else}}
+    <div class="row" style="margin-left: 5px;margin-top: 10px;">
+        <table class="auction-items" style="background-color:#fff">
+        <tr>
+            <th class="text-center">
+            Tên khách hàng</th>
+            <th class="text-center">
+            Địa chỉ</th>
+            <th class="text-center">
+            Email</th>
+            <th class="text-center">
+            Password</th>
+            <th class="text-center">
+            Điểm đánh giá</th>
+            <th class="text-center">
+            Loại khách hàng</th>
+        </tr>
+        {{#each listUsers }}
+        <tr class="row-1">
+            <td align="center">
+                {{hoten}}
+            </td>
+            <td align="center">
+                {{diachi}}
+            </td>
+            <td align="center">
+                {{email}}
+            </td>
+            <td align="center">
+                ********
+            </td>
+            <td align="center">
+                {{diemdanhgia}}
+            </td>
+            <td align="center">
+                {{loaikhachhang}}
+            </td>
+
+
+            </td>
+            <td class="text-center">
+                <a title="Nhấp vào để xóa người dùng" href="/admin/deleteCustomer/{{khachhangid}}" id="{{khachhangid}}" ><img src="/assests/images/garbage.png" border="0"></a>
+            </td>
+            <td class="text-center">
+                <a title="Nhấp vào để reset mật khẩu (123456)" href="/admin/resetPass/{{khachhangid}}" id="{{khachhangid}}" ><img src="/assests/images/reset.png" border="0"></a>
+            </td>
+        </tr>
+        {{/each}}
+        </table>
+    </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {{#if showPrevPage}}
+                <li>
+                    <a href="?page={{prevPage}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {{/if}}
+            {{#each pages }}
+                {{#if isActive }}
+                    <li class="active">
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
+                    </li>
+                {{else}}
+                    <li>
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
+                    </li>
+                {{/if}}
+            {{/each}}
+            {{#if showNextPage }}
+                <li>
+                    <a href="?page={{nextPage}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {{/if}}
+        </ul>
+    </nav>
+{{/if}}

@@ -2,6 +2,37 @@ var Q = require('q');
 var mustache = require('mustache');
 var db = require('../app-helpers/dbHelper');
 
+exports.loadAllCustomer = function() {
+
+    var deferred = Q.defer();
+
+    var sql = mustache.render('select * from KHACH_HANG');
+    db.load(sql).then(function(rows) {
+        if (rows.length > 0) {
+            var arrUsers = [];
+            rows.forEach(function(item) {
+                var DiemDanhGia = (item.DiemDGDuong - item.DiemDGAm)/(item.DiemDGDuong + item.DiemDGAm) * 100;
+                DiemDanhGia = DiemDanhGia.toFixed(1);
+                var user = {
+                    khachhangid: item.KhachHangId,
+                    matkhau: item.MatKhau,
+                    hoten: item.HoTen,
+                    diachi: item.DiaChi,
+                    email: item.Email,
+                    diemdanhgia: DiemDanhGia,
+                    loaikhachhang: item.LoaiKhachHang
+                };
+                arrUsers.push(user);
+            });
+            deferred.resolve(arrUsers);
+        } else {
+            deferred.resolve(null);
+        }
+    });
+
+    return deferred.promise;
+}
+
 exports.loadAllRequest = function() {
 
     var deferred = Q.defer();

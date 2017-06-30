@@ -1,0 +1,77 @@
+{{#section 'title'}}
+    Quản lý danh mục
+{{/section}}
+
+{{#if isEmpty }}
+    <form style="margin-left: 5px;margin-top: 10px;" action="/product/searchLike" method="get">
+        <input type="text" maxlength="70" name="txtKeyword" id="txtKeyword" tabindex="99"  placeholder="Nhập tên sản phẩm..."/>
+        <input type="submit" value="Tìm kiếm">
+    </form>
+    Không có danh mục!
+{{else}}
+    <div class="row" style="margin-left: 5px;margin-top: 10px;">
+    <form class="form-group" method="post">
+        <input type="text" maxlength="70" name="txtTenDanhMuc" id="txtTenDanhMuc" tabindex="99"  placeholder="Nhập tên danh mục" value="" />
+        <input type="text" maxlength="70" name="txtIdDanhMuc" id="txtIdDanhMuc" tabindex="99"  placeholder="Nhập ID danh mục" value="" />
+        <button formaction="/category/insert">
+            <a type="submit" title="Nhấp vào để thêm danh mục"><img src="/assests/images/add.png" border="0"></a>
+        </button>
+        <button formaction="/category/edit">
+            <a type="submit" title="Nhấp vào để sửa danh mục"><img src="/assests/images/edit.png" border="0"></a>
+        </button>
+    </form>
+        <table class="auction-items" style="background-color:#fff">
+        <tr>
+            <th class="text-center">
+            Id danh mục</th>
+            <th class="text-center">
+            Tên danh mục</th>
+        </tr>
+        {{#each listCategories }}
+        <tr class="row-1">
+            <td align="center">
+                {{DanhMucId}}
+            </td>
+            <td align="center">
+                {{TenDanhMuc}}
+            </td>
+
+
+            </td>
+            <td class="text-center">
+                <a title="Nhấp vào để xóa danh mục" href="/category/delete/{{DanhMucId}}" id="{{DanhMucId}}" ><img src="/assests/images/garbage.png" border="0"></a>
+            </td>
+        </tr>
+        {{/each}}
+        </table>
+    </div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            {{#if showPrevPage}}
+                <li>
+                    <a href="?page={{prevPage}}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            {{/if}}
+            {{#each pages }}
+                {{#if isActive }}
+                    <li class="active">
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
+                    </li>
+                {{else}}
+                    <li>
+                        <a href="?page={{pageValue}}">{{pageValue}}</a>
+                    </li>
+                {{/if}}
+            {{/each}}
+            {{#if showNextPage }}
+                <li>
+                    <a href="?page={{nextPage}}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            {{/if}}
+        </ul>
+    </nav>
+{{/if}}

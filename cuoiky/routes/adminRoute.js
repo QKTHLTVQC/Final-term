@@ -7,16 +7,48 @@ var account = require('../models/account');
 var adminRoute = express.Router();
 
 adminRoute.get('/manageCustomer', function(req, res) {
+
+    admin.loadAllCustomer()
+        .then(function(rows) {
+            res.render('admin/manageCustomer', {
+                layoutModels: res.locals.layoutModels,
+                listUsers:rows,
+                showError: false,
+                errorMsg: ''
+            });
+        });
     
-    res.render('admin/manageCustomer', {
-        layoutModels: res.locals.layoutModels,
-        showError: false,
-        errorMsg: ''
-    });
+    
+});
+
+adminRoute.get('/deleteCustomer/:id', function(req, res) {
+    var id = req.params.id;
+    var entity = {
+        khachhangid: id
+    };
+    admin.deleteCustomer(entity)
+        .then(function(rows) {
+            res.redirect('/admin/manageCustomer');
+        });
+    
+});
+
+
+adminRoute.get('/resetPass/:id', function(req, res) {
+    var id = req.params.id;
+    var ePWD = crypto.createHash('md5').update("123456").digest('hex');
+    var entity = {
+        khachhangid: id,
+        matkhau:ePWD
+    };
+    admin.resetPass(entity)
+        .then(function(rows) {
+            res.redirect('/admin/manageCustomer');
+        });
 });
 
 adminRoute.get('/requestSeller', function(req, res) {
-    admin.loadAllRequest(entity)
+    admin.loadAllRequest()
         .then(function(rows) {
             res.render('admin/manageSeller', {
                 layoutModels: res.locals.layoutModels,
@@ -29,7 +61,7 @@ adminRoute.get('/requestSeller', function(req, res) {
     
 });
 
-adminRoute.post('/acceptSeller/:id', function(req, res) {
+adminRoute.get('/acceptSeller/:id', function(req, res) {
     var id = req.params.id;
     var entity = {
         khachhangid: id,
