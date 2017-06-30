@@ -427,8 +427,7 @@ productRoute.post('/setMoney/:id/:giadecu',function(req,res) {
     if(req.session.user.diemdanhgia <= 80) {
         console.log("diemdanhgia <= 80");
     }
-    else
-    if(req.body.tiendatcuoc < GiaDeCu) {
+    else if(req.body.tiendatcuoc < GiaDeCu) {
         console.log("tiendatcuoc < GiaDeCu");
 
     }
@@ -453,8 +452,18 @@ productRoute.post('/setMoney/:id/:giadecu',function(req,res) {
                     console.log("Them that bai!");
                 }
             });
-
-        //ra gia
+        //Kiểm tra autobid
+        product.getMaxAuToBid(SPid)
+            .then(function(maxPrice) {
+                console.log(maxPrice[0].LargestPrice);
+            if (maxPrice[0].LargestPrice > req.body.tiendatcuoc) {
+                product.setMoney(entity)
+                    .then(function(productId) {
+                        res.redirect('/product/detail/'+req.params.id);
+                });
+            }
+            else {
+                //ra gia
         product.setMoney(entity)
             .then(function(productId) {
                 product.loadDetail(productId)
@@ -508,8 +517,12 @@ productRoute.post('/setMoney/:id/:giadecu',function(req,res) {
 
             });
         });
+            }
+        });
+
+        
     }
-    res.redirect('/home');
+    // res.redirect('/home');
 });
 
 productRoute.get('/auctioning', function(req, res) {
@@ -620,6 +633,17 @@ productRoute.get('/selled', function(req, res) {
                 showNextPage: curPage < number_of_pages - 1,
             });
     });
+});
+
+productRoute.get('/setAutoBid/:id', function(req, res) {
+    if (req.query.txtPrice > req.query.txtMaxPrice) {
+        res.redirect('/product/detail/'+req.params.id); 
+    } else {
+        product.insertAutoBid(req.params.id, req.session.user.khachhangid, req.query.txtMaxPrice)
+            .then(function(pro) {
+            res.redirect('/home'); 
+        });
+    }
 });
 
 module.exports = productRoute;

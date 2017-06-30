@@ -232,12 +232,18 @@
                         &nbsp;</div>
                         {{#if ../layoutModels.isLogged }}
                             <div class="submit-btn rows">
-                            <form class="form-horizontal" method="post" name="form">
+                            <form class="form-horizontal" method="post" name="form" style="margin-bottom: 10px;">
                             <input title="Giá hợp lệ nhỏ nhất" id="tiendatcuoc" class="price" type="text" value="{{GiaDeCu}}" name="tiendatcuoc" placeholder="Số tiền đặt giá" />
                             <input class="btn btn-primary" type="submit" id="btnRaGia" value="Ra giá" formaction="/product/setMoney/{{SanPhamId}}/{{GiaDeCu}}"/>
                             </form>
+                            <form class="form-horizontal" method="get" name="form2">
+                                <input type="hidden" title="Giá hợp lệ nhỏ nhất" id="tiendatcuoc" class="price" value="{{GiaDeCu}}" name="txtPrice" id="txtPrice" placeholder="Số tiền đặt giá" />
+                                <input type="text" class="price2" placeholder="giá cao nhất" id="txtMaxPrice" name="txtMaxPrice" style="margin-left:0px;" value="" maxlength="15"  />
+                                <input class="btn btn-primary" type="submit" id="btnRaGia" value="Auto Bid" formaction="/product/setAutoBid/{{SanPhamId}}"/>
+                                </div>
+                            </form>
                             <form class="form-horizontal" method="post" name="form">
-                            <input type="text" class="form-control" id="nhanxet" placeholder="Nhận xét" name="nhanxet"/>
+                            <input style="margin-bottom: 10px;" type="text" class="form-control" id="nhanxet" placeholder="Nhận xét" name="nhanxet"/>
                             <input class="btn btn-primary" type="submit" id="btnLike" value="Like" formaction="/product/userDetail/{{idSeller}}/like"/>
                             <input class="btn btn-primary" type="submit" id="btnDislike" value="Dislike" onclick="javascript: form.action='/product/userDetail/{{idSeller}}/dislike';"/>
                             </form>

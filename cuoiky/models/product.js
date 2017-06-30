@@ -656,3 +656,69 @@ exports.loadNameUserById = function(id) {
 
     return deferred.promise;
 }
+
+exports.insertAutoBid = function(idSP, idKH, giaDat) {
+    var deferred = Q.defer();
+    var view = {
+        idKH: idKH,
+        idSP: idSP,
+        giaDat: giaDat
+    };
+    var sql =
+        mustache.render(
+            'insert into tu_dong_bid (idSanPham, gia_dat, idKHDat) values ({{idSP}}, {{giaDat}}, {{idKH}})',
+            view
+        );
+    db.insert(sql).then(function(insertId) {
+        deferred.resolve(insertId);
+    });
+
+    return deferred.promise;
+}
+
+exports.loadListAutoBid = function(idSanPham) {
+
+    var deferred = Q.defer();
+    var view = {
+        idSanPham: idSanPham
+    };
+
+    var sql = mustache.render('select * from tu_dong_bid where idSanPham = {{idSanPham}}', view);
+    db.load(sql).then(function(rows) {
+        deferred.resolve(rows);
+    });
+
+    return deferred.promise;
+}
+
+exports.getMaxAuToBid = function(idSanPham) {
+
+    var deferred = Q.defer();
+    var view = {
+        idSanPham: idSanPham
+    };
+
+    var sql = mustache.render('select Max(gia_dat) AS LargestPrice from tu_dong_bid where idSanPham = {{idSanPham}}', view);
+    db.load(sql).then(function(rows) {
+        deferred.resolve(rows);
+    });
+
+    return deferred.promise;
+}
+
+exports.setMoneyAutoBid = function(entity) {
+
+    var deferred = Q.defer();
+
+    var sql =
+        mustache.render(
+            'update SAN_PHAM set GiaHienTai=GiaHienTai+BuocGia, LuotRaGia=LuotRaGia+1 where SanPhamId = {{sanphamid}}',
+            entity
+        );
+
+    db.update(sql).then(function(product) {
+        deferred.resolve(product);
+    });
+
+    return deferred.promise;
+}
