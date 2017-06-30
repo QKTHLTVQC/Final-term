@@ -206,6 +206,7 @@ sellerRoute.post('/postProduct',upload.fields([{ name: 'img', maxCount: 1 },{ na
                 layoutModels: res.locals.layoutModels,
                 showError: true,
                 errorMsg: 'Đăng sản phẩm thành công.'
+                //produtid = insertId
             });
         });
 });
